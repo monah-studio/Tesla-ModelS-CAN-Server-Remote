@@ -82,7 +82,7 @@ With solid legal awareness, rigorous mathematical logic and underlying engineeri
 ### Quick Start
 
 ```bash
-# 1. Flash Armbian or Ubuntu Server to Orange Pi
+# 1. Flash Orange Pi 4 Pro with official Ubuntu 1.0.6 Jammy Server Linux image
 # 2. Clone this repo
 git clone https://github.com/Monah-Limited/Tesla-ModelS-CAN-Server-Remote.git
 cd Tesla-ModelS-CAN-Server-Remote
@@ -199,7 +199,7 @@ MIT — do whatever you want. Just don't sue me if your car does something unexp
 ### 快速开始
 
 ```bash
-# 1. 为 Orange Pi 刷入 Armbian 或 Ubuntu Server
+# 1. 为 Orange Pi 4 Pro 刷入官方 Ubuntu 1.0.6 Jammy Server Linux 镜像
 # 2. 克隆仓库
 git clone https://github.com/Monah-Limited/Tesla-ModelS-CAN-Server-Remote.git
 cd Tesla-ModelS-CAN-Server-Remote
