@@ -117,6 +117,10 @@
   .add-form .vin-result.show{display:block}
   .add-form .vin-result.success{background:var(--greenDim);border:1px solid rgba(48,209,88,.15)}
   .add-form .vin-result.error{background:var(--redDim);border:1px solid rgba(255,69,58,.15)}
+  .add-form .add-row{display:flex;gap:10px;margin-top:4px}
+  .add-form .add-col{flex:1;min-width:0}
+  .add-form .add-col select{width:100%}
+  .add-form .add-col .color-picker{flex-wrap:wrap}
   .add-form .color-picker{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
   .add-form .color-chip{width:32px;height:32px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all .12s}
   .add-form .color-chip.active{border-color:var(--onSurface);transform:scale(1.1)}
@@ -408,13 +412,13 @@
 
     <!-- Tab: VIN or Model -->
     <div class="add-tabs">
-      <button class="add-tab active" id="tabVin" onclick="switchAddMode('vin')">🔍 输入VIN</button>
-      <button class="add-tab" id="tabModel" onclick="switchAddMode('model')">📋 选车型</button>
+      <button class="add-tab active" id="tabVin" onclick="switchAddMode('vin')">🔍 扫VIN (可选)</button>
+      <button class="add-tab" id="tabModel" onclick="switchAddMode('model')">📋 手动选配</button>
     </div>
 
     <!-- Mode: VIN -->
     <div id="addModeVin">
-      <label>车架号 (VIN) *</label>
+      <label>车架号 VIN <span style="color:var(--onSurfaceMuted);font-weight:400;text-transform:none">(可选)</span></label>
       <div class="vin-row">
         <input type="text" id="newVin" placeholder="5YJ..." maxlength="17" oninput="onVinInput()">
         <button onclick="decodeNewVin()" id="decodeBtn">识别</button>
@@ -424,46 +428,85 @@
 
     <!-- Mode: Model Picker -->
     <div id="addModeModel" style="display:none">
-      <label>选择车型 *</label>
+      <label>车型 *</label>
       <select id="newModelSelect" onchange="onModelSelected()">
         <option value="">— 选择车型 —</option>
       </select>
       <div id="newModelInfo" style="margin-top:8px;background:var(--surface3);border-radius:var(--radiusXs);padding:12px;font-size:12px;color:var(--onSurfaceDim);display:none"></div>
     </div>
 
-    <label>车辆昵称</label>
+    <label>车辆昵称 <span style="color:var(--onSurfaceMuted);font-weight:400;text-transform:none">(可选）</span></label>
     <input type="text" id="newNick" placeholder="我的 85D">
 
-    <label>颜色</label>
-    <div class="color-picker" id="newColorPicker"></div>
-    <div style="margin-top:4px">
-      <input type="text" id="newCustomHex" placeholder="#XXXXXX 自定义车衣颜色" style="width:100%;background:var(--surface3);border:1px solid rgba(255,255,255,.06);border-radius:var(--radiusXs);padding:8px 12px;color:var(--onSurface);font-size:12px;outline:none;font-family:monospace">
+    <div class="add-row">
+      <div class="add-col">
+        <label>子型号 / 版本</label>
+        <select id="newSubModel">
+          <option value="standard">Standard</option>
+          <option value="long_range" selected>Long Range</option>
+          <option value="performance">Performance</option>
+          <option value="plaid">Plaid</option>
+          <option value="base">Base</option>
+        </select>
+      </div>
+      <div class="add-col">
+        <label>出厂年份</label>
+        <select id="newYear"></select>
+      </div>
     </div>
 
-    <label>轮毂尺寸</label>
-    <select id="newWheelSize" style="width:100%;background:var(--surface3);border:1px solid rgba(255,255,255,.06);border-radius:var(--radiusXs);padding:10px 12px;color:var(--onSurface);font-size:13px;outline:none;font-family:inherit">
-      <option value="stock_19">19寸 标准轮毂</option><option value="turbine_21">21寸 Turbine</option>
-    </select>
-
-    <label>MCU / 车载电脑</label>
-    <select id="newMcu" style="width:100%;background:var(--surface3);border:1px solid rgba(255,255,255,.06);border-radius:var(--radiusXs);padding:10px 12px;color:var(--onSurface);font-size:13px;outline:none;font-family:inherit">
-      <option value="mcu1">MCU 1 (Tegra)</option><option value="mcu2">MCU 2 (Intel Atom)</option>
-      <option value="fsd3">FSD Computer 3 (HW3)</option><option value="hw4">FSD Computer 4 (HW4)</option>
-    </select>
-
-    <label>车身外观</label>
-    <select id="newBodyStyle" style="width:100%;background:var(--surface3);border:1px solid rgba(255,255,255,.06);border-radius:var(--radiusXs);padding:10px 12px;color:var(--onSurface);font-size:13px;outline:none;font-family:inherit">
-      <option value="stock_og">原厂老款 (2012-2016)</option><option value="stock_facelift">原厂改款 (2016-2021)</option>
-      <option value="stock_palladium">原厂 Palladium (2021+)</option>
-    </select>
-
-    <label>内部皮革颜色</label>
-    <div class="color-picker" id="newInteriorPicker"></div>
-    <div style="margin-top:4px">
-      <input type="text" id="newCustomInteriorHex" placeholder="#XXXXXX 自定义内饰色" style="width:100%;background:var(--surface3);border:1px solid rgba(255,255,255,.06);border-radius:var(--radiusXs);padding:8px 12px;color:var(--onSurface);font-size:12px;outline:none;font-family:monospace">
+    <div class="add-row">
+      <div class="add-col">
+        <label>颜色</label>
+        <div class="color-picker" id="newColorPicker"></div>
+        <input type="text" id="newCustomHex" placeholder="#XXXXXX 自定义车衣" style="width:100%;background:var(--surface3);border:1px solid rgba(255,255,255,.06);border-radius:var(--radiusXs);padding:8px 12px;color:var(--onSurface);font-size:12px;outline:none;font-family:monospace;margin-top:4px">
+      </div>
+      <div class="add-col">
+        <label>内饰</label>
+        <div class="color-picker" id="newInteriorPicker"></div>
+        <input type="text" id="newCustomInteriorHex" placeholder="#XXXXXX 自定义" style="width:100%;background:var(--surface3);border:1px solid rgba(255,255,255,.06);border-radius:var(--radiusXs);padding:8px 12px;color:var(--onSurface);font-size:12px;outline:none;font-family:monospace;margin-top:4px">
+      </div>
     </div>
 
-    <label>备注 (可选)</label>
+    <div class="add-row">
+      <div class="add-col">
+        <label>轮毂</label>
+        <select id="newWheelSize">
+          <option value="stock_19">19寸 标准</option><option value="turbine_21">21寸 Turbine</option>
+          <option value="slipstream_19">19寸 Slipstream</option><option value="aract_20">20寸 Aract</option>
+        </select>
+      </div>
+      <div class="add-col">
+        <label>MCU / 电脑</label>
+        <select id="newMcu">
+          <option value="mcu1">MCU 1 (Tegra)</option><option value="mcu2">MCU 2 (Intel Atom)</option>
+          <option value="fsd3">FSD 3 (HW3)</option><option value="hw4">FSD 4 (HW4)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="add-row">
+      <div class="add-col">
+        <label>车身外观</label>
+        <select id="newBodyStyle">
+          <option value="stock_og">原厂老款 (2012-2016)</option>
+          <option value="stock_facelift">原厂改款 (2016-2021)</option>
+          <option value="stock_palladium">原厂 Palladium (2021+)</option>
+        </select>
+      </div>
+      <div class="add-col">
+        <label>地区 / 规格</label>
+        <select id="newRegion">
+          <option value="us_eu">🇺🇸 北美 / 欧洲 (左舵)</option>
+          <option value="china">🇨🇳 中国 (左舵)</option>
+          <option value="hong_kong" selected>🇭🇰 香港 / UK (右舵)</option>
+          <option value="japan">🇯🇵 日本 (右舵)</option>
+          <option value="other">🌍 其他</option>
+        </select>
+      </div>
+    </div>
+
+    <label>备注 <span style="color:var(--onSurfaceMuted);font-weight:400;text-transform:none">(可选）</span></label>
     <input type="text" id="newNote" placeholder="香港车 / 改色灰色">
 
     <button class="btn-save" onclick="saveNewVehicle()">✅ 确认绑定</button>
@@ -641,6 +684,17 @@ function showAddVehicle() {
   renderNewInteriorPicker();
   switchAddMode('vin');
   loadModelList();
+  // Populate year dropdown
+  const yrSel=document.getElementById('newYear');
+  if(!yrSel.options.length){
+    const now=new Date().getFullYear();
+    for(let y=now;y>=2012;y--){
+      const o=document.createElement('option');
+      o.value=y;o.textContent=y;
+      if(y===2015)o.selected=true;
+      yrSel.appendChild(o);
+    }
+  }
 }
 
 /* ── Tab switch ── */
@@ -799,31 +853,31 @@ function saveNewVehicle() {
   const vin = document.getElementById('newVin').value.trim().toUpperCase();
   const nick = document.getElementById('newNick').value.trim();
   const note = document.getElementById('newNote').value.trim();
+  const subModel = document.getElementById('newSubModel').value;
+  const selYear = document.getElementById('newYear').value;
+  const region = document.getElementById('newRegion').value;
 
-  // Determine mode: VIN or Model
-  const isModelMode = _selectedModelData !== null;
-
-  if (!isModelMode) {
-    if (!vin || vin.length !== 17) {
-      toast('⚠️ 请扫描 VIN 或选择车型', 'error');
-      return;
-    }
+  // VIN is optional — only validate if filled
+  if (vin && vin.length !== 17) {
+    toast('⚠️ VIN 应为 17 位', 'error');
+    return;
   }
 
-  if (!nick) {
-    toast('⚠️ 请填写车辆昵称', 'error');
+  // Must have EITHER VIN or model selected
+  const isModelMode = _selectedModelData !== null;
+  if (!vin && !isModelMode) {
+    toast('⚠️ 请扫 VIN 或选择车型', 'error');
     return;
   }
 
   // Guess model info
   let modelName = 'Tesla';
-  let year = null;
+  let year = parseInt(selYear) || null;
   let battery = '';
   let range = null;
   let icon = '🚗';
 
   if (isModelMode && _selectedModelData) {
-    // Model picker mode
     modelName = _selectedModelData.name || '';
     battery = (_selectedModelData.battery_kwh || '') + 'kWh';
     range = _selectedModelData.range_km || null;
@@ -833,7 +887,7 @@ function saveNewVehicle() {
       const series = (modelName.match(/Model ([SX3YCR])/) || [])[1];
       icon = iconMap[series] || '🚗';
     }
-  } else {
+  } else if (vin) {
     // VIN mode — guess from VIN prefix
     if (vin.startsWith('5YJSB7') || vin.startsWith('5YJSA7')) {
       modelName = 'Model S 85D'; icon = '🚗'; battery = '85kWh'; range = 443;
@@ -861,7 +915,7 @@ function saveNewVehicle() {
 
   const vehicle = {
     id: 'v_' + Date.now(),
-    nick: nick,
+    nick: nick || modelName,
     vin: vin,
     modelName: modelName,
     year: year,
@@ -874,6 +928,8 @@ function saveNewVehicle() {
     bodyStyle: document.getElementById('newBodyStyle').value,
     interiorColor: _selectedInteriorColor,
     interiorCustomHex: document.getElementById('newCustomInteriorHex').value.trim(),
+    subModel: subModel,
+    region: region,
     note: note,
     icon: icon,
     createdAt: Date.now(),
