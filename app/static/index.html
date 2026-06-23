@@ -372,14 +372,6 @@
       <label>Tailscale IP</label><input type="text" id="tsIp" placeholder="100.x.x.x">
       <label>DDNS 域名</label><input type="text" id="ddnsDomain" placeholder="mytesla.duckdns.org">
     </div>
-    <div class="section-label" style="font-size:11px;padding:12px 4px 4px;color:var(--onSurfaceMuted)">☁️ Tesla Fleet API</div>
-    <div class="settings-group">
-      <div style="display:flex;gap:8px;align-items:center">
-        <span id="teslaAuthStatus" style="font-size:12px;color:var(--onSurfaceDim)">未授权</span>
-        <button id="teslaAuthBtn" onclick="startTeslaAuth()" style="margin-left:auto;background:var(--accent);border:none;border-radius:var(--radiusXs);padding:6px 12px;color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit">授权</button>
-      </div>
-      <div id="teslaAuthProgress" style="display:none;margin-top:8px;padding:10px;background:var(--surface3);border-radius:var(--radiusXs);font-size:11px;color:var(--onSurfaceDim);line-height:1.6"></div>
-    </div>
   </div>
 
   <!-- Diagnostics Panel -->
@@ -420,15 +412,14 @@
 
     <!-- Connection Type -->
     <label>连接方式</label>
-    <div class="mode-selector" id="connTypeSelector" style="grid-template-columns:1fr 1fr">
-      <div class="mode-chip active" data-mode="can" onclick="selectConnType('can')">🔌 CAN 总线</div>
-      <div class="mode-chip" data-mode="tesla" onclick="selectConnType('tesla')">☁️ Tesla API</div>
+    <div class="mode-selector" id="connTypeSelector" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="mode-chip active" data-mode="can" onclick="selectConnType('can')">🔌 CAN</div>
+      <div class="mode-chip" data-mode="sandbox" onclick="selectConnType('sandbox')">🧪 模拟</div>
     </div>
 
-    <!-- CAN Mode warning (Tesla API) -->
-    <div id="teslaApiNote" style="display:none;background:var(--accentDim);border-radius:var(--radiusXs);padding:10px;font-size:11px;color:var(--accent);margin-bottom:10px;line-height:1.5">
-      📖 只读模式 — Tesla Fleet API 读取车辆状态，不能发送控制命令。
-      请在设置中完成 OAuth 授权。
+    <!-- Sandbox note -->
+    <div id="sandboxNote" style="display:none;background:var(--amber);color:#000;border-radius:var(--radiusXs);padding:10px;font-size:11px;margin-bottom:10px;line-height:1.5;font-weight:500">
+      🧪 模拟模式 — 显示虚拟数据，用于测试 UI/UX。所有命令返回模拟成功。
     </div>
 
     <!-- Tab: VIN or Model -->
@@ -731,7 +722,7 @@ let _connType = 'can';
 function selectConnType(type) {
   _connType = type;
   document.querySelectorAll('#connTypeSelector .mode-chip').forEach(c => c.classList.toggle('active', c.dataset.mode === type));
-  document.getElementById('teslaApiNote').style.display = type === 'tesla' ? 'block' : 'none';
+  document.getElementById('sandboxNote').style.display = type === 'sandbox' ? 'block' : 'none';
 }
 
 /* ── VIN input auto-trim ── */
@@ -1075,6 +1066,13 @@ async function sendCmd(cmd) {
   else if (cmd==='windows_vent'){CAR.windowsVent=true}
   else if (cmd==='windows_close'){CAR.windowsVent=false}
   updateCarVisual();
+  // Sandbox: simulate success
+  const v = activeVehicle();
+  if (v && v.connType === 'sandbox') {
+    toast(`✅ ${['lock','🔒已锁门','unlock','🔓已开门','frunk','🟢前备箱','trunk','🟤后备箱','flash_lights','💡闪灯','honk','📯鸣笛','windows_vent','🪟通风','windows_close','🔒关窗','charge_port_open','🔌充电口开','charge_port_close','🔌充电口关','mirrors_fold','🪞折叠','mirrors_unfold','🪞展开','interior_lights_on','🔦灯开','interior_lights_off','🔦灯关','hvac_on','❄️空调开','hvac_off','❄️空调关'][cmd]||cmd}`);
+    btn?.style.removeProperty('opacity');
+    return;
+  }
   try {
     const r = await api('POST',cmd);
     if(r&&r.success) toast(`✅ ${{lock:'🔒已锁门',unlock:'🔓已开门',frunk:'🟢前备箱',trunk:'🟤后备箱',flash_lights:'💡闪灯',honk:'📯鸣笛',windows_vent:'🪟通风',windows_close:'🔒关窗'}[cmd]||cmd}`);
@@ -1088,6 +1086,13 @@ async function toggleLock(e) {
   document.getElementById('lockBtn').classList.add('loading');
   if(cmd==='unlock'){CAR.locked=false;CAR.doorsOpen=true}else{CAR.locked=true;CAR.doorsOpen=false;CAR.frunkOpen=false;CAR.trunkOpen=false}
   updateCarVisual(); updateLockUI();
+  // Sandbox: simulate
+  const sv = activeVehicle();
+  if (sv && sv.connType === 'sandbox') {
+    toast(CAR.locked?'🔒已锁门':'🔓已开门');
+    document.getElementById('lockBtn').classList.remove('loading');
+    return;
+  }
   try {
     const r=await api('POST',cmd);
     if(!r||!r.success){if(cmd==='unlock'){CAR.locked=true;CAR.doorsOpen=false}else{CAR.locked=false;CAR.doorsOpen=true}updateCarVisual();updateLockUI();toast('⚠️失败','error')}
@@ -1223,14 +1228,43 @@ async function runDiagnostics() {
 }
 
 async function pollStatus(){
-  const r=await api('GET','status');
+  const v = activeVehicle();
+  const isSandbox = v && v.connType === 'sandbox';
   const dot=document.getElementById('connDot');const label=document.getElementById('connLabel');
+
+  // Sandbox mode: generate mock data
+  if (isSandbox) {
+    CAR.connected = true;
+    dot.className = 'conn-dot online';
+    label.textContent = '🧪 模拟';
+    const mockSoc = 68 + Math.floor(Math.random() * 10);
+    const mockData = {
+      connected: true, battery_soc: mockSoc,
+      gear: Math.random() > 0.8 ? 'D' : 'P',
+      ambient_temp_c: 22 + Math.floor(Math.random() * 8),
+      doors: { locked: Math.random() > 0.3 },
+      charge_port: { state: Math.random() > 0.7 ? 'LOCKED' : 'CLOSED', charging: Math.random() > 0.8 },
+      windows: Math.random() > 0.7 ? 'VENTED' : 'CLOSED',
+      drive_mode: Math.random() > 0.6 ? 'CHILL' : 'SPORT',
+    };
+    applyStatus(mockData);
+    updateCarVisual();
+    return;
+  }
+
+  const r=await api('GET','status');
   if(!r){dot.className='conn-dot offline';label.textContent='未连接';CAR.connected=false;document.getElementById('stateDot').style.background='var(--onSurfaceMuted)';document.getElementById('stateLabel').textContent='离线';updateCarVisual();return}
   CAR.connected=true;
   dot.className=`conn-dot ${r.connected?'online':'offline'}`;
   label.textContent=r.connected?'已连接':'CAN离线';
+  applyStatus(r);
+  updateCarVisual();
+}
 
-  // Update battery ring
+/* ── Apply status data to UI ── */
+function applyStatus(r) {
+  if (!r) return;
+  // Battery ring
   if(r.battery_soc!=null){
     const pct=r.battery_soc;
     document.getElementById('battPct').textContent=pct;
@@ -1240,38 +1274,30 @@ async function pollStatus(){
     circ.setAttribute('stroke-dashoffset',offset);
     circ.setAttribute('stroke',pct>50?'var(--green)':pct>20?'var(--amber)':'var(--red)');
   }
-
-  // Update range
+  // Range
   if(r.battery_soc!=null){
     const estKm=Math.round(443*r.battery_soc/100);
     document.getElementById('rangeKm').textContent=estKm;
   }
-
-  // Update gear
+  // Gear
   if(r.gear){
     document.getElementById('gearDisplay').textContent=r.gear;
   }
-
-  // Update temperature
+  // Temperature
   if(r.ambient_temp_c!=null){
     document.getElementById('ambientTemp').textContent=Math.round(r.ambient_temp_c);
   }
-
-  // Update state badge
+  // State badge
   const stateDot=document.getElementById('stateDot');
   const stateLabel=document.getElementById('stateLabel');
   if(r.doors?.locked){
-    stateDot.style.background='var(--red)';
-    stateLabel.textContent='已锁';
+    stateDot.style.background='var(--red)';stateLabel.textContent='已锁';
   }else if(r.charge_port?.charging){
-    stateDot.style.background='var(--green)';
-    stateLabel.textContent='充电中';
+    stateDot.style.background='var(--green)';stateLabel.textContent='充电中';
   }else{
-    stateDot.style.background='var(--onSurfaceMuted)';
-    stateLabel.textContent='就绪';
+    stateDot.style.background='var(--onSurfaceMuted)';stateLabel.textContent='就绪';
   }
-
-  updateCarVisual();
+}
 }
 
 /* ══════════════════════════════════════════════════════════════════
