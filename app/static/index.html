@@ -13,44 +13,24 @@
   html,body{height:100%;-webkit-font-smoothing:antialiased}
   body{font-family:-apple-system,'Inter','PingFang HK','Helvetica Neue',sans-serif;background:var(--bg);color:var(--onSurface);overflow-x:hidden}
   ::-webkit-scrollbar{width:0;height:0}
-  .app{max-width:480px;margin:0 auto;min-height:100vh;padding:0 20px;padding-top:env(safe-area-inset-top,8px);padding-bottom:calc(env(safe-area-inset-bottom,16px)+90px)}
+  .app{max-width:480px;margin:0 auto;min-height:100vh;padding:0 20px;padding-top:env(safe-area-inset-top,4px);padding-bottom:calc(env(safe-area-inset-bottom,16px)+90px)}
 
   /* ── Top Bar ── */
-  .top-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
-  .top-bar .tb-left{display:flex;align-items:center;gap:8px}
-  .top-bar .tb-vehicle{font-size:16px;font-weight:700}
-  .top-bar .tb-vehicle .arrow{font-size:10px;color:var(--onSurfaceDim);margin-left:4px}
-  .top-bar .tb-conn{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--cardBorder);border-radius:var(--radiusPill);padding:4px 10px 4px 6px;font-size:11px;font-weight:500;color:var(--onSurfaceDim)}
-  .top-bar .conn-dot{width:6px;height:6px;border-radius:50%}
+  .top-bar{display:flex;align-items:center;justify-content:space-between;padding:4px 0}
+  .top-bar .tb-left{display:flex;align-items:center;gap:6px}
+  .top-bar .tb-vehicle{font-size:17px;font-weight:700;letter-spacing:-.3px}
+  .top-bar .tb-vehicle .arrow{font-size:9px;color:var(--onSurfaceDim);margin-left:3px}
+  .top-bar .tb-conn{display:flex;align-items:center;gap:5px;background:var(--card);border:1px solid var(--cardBorder);border-radius:var(--radiusPill);padding:3px 8px 3px 5px;font-size:10px;font-weight:500;color:var(--onSurfaceDim)}
+  .top-bar .conn-dot{width:5px;height:5px;border-radius:50%}
   .top-bar .conn-dot.online{background:var(--green)}
   .top-bar .conn-dot.offline{background:var(--onSurfaceMuted)}
 
-  /* ── Battery / Status Card ── */
-  .status-card{background:var(--card);border:1px solid var(--cardBorder);border-radius:var(--radius);padding:16px;margin:4px 0 8px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-  .status-card .sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-  .status-card .sc-battery{display:flex;align-items:center;gap:12px}
-  .status-card .sc-battery .batt-ring{position:relative;width:48px;height:48px}
-  .status-card .sc-battery .batt-ring svg{transform:rotate(-90deg)}
-  .status-card .sc-battery .batt-ring .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
-  .status-card .sc-battery .batt-info{display:flex;flex-direction:column}
-  .status-card .sc-battery .batt-info .range{font-size:24px;font-weight:700;letter-spacing:-.5px}
-  .status-card .sc-battery .batt-info .range-unit{font-size:12px;font-weight:500;color:var(--onSurfaceDim);margin-left:2px}
-  .status-card .sc-battery .batt-info .sub{font-size:11px;color:var(--onSurfaceDim);margin-top:1px}
-  .status-card .sc-right{text-align:right}
-  .status-card .sc-right .temp{font-size:20px;font-weight:600}
-  .status-card .sc-right .temp-unit{font-size:12px;color:var(--onSurfaceDim)}
-  .status-card .sc-right .sub{font-size:11px;color:var(--onSurfaceMuted);margin-top:1px}
-  .status-card .sc-bottom{display:flex;gap:16px;margin-top:8px;padding-top:10px;border-top:1px solid var(--cardBorder)}
-  .status-card .sc-stat{flex:1;text-align:center}
-  .status-card .sc-stat .val{font-size:14px;font-weight:600}
-  .status-card .sc-stat .lbl{font-size:10px;color:var(--onSurfaceMuted);margin-top:1px}
-
-  /* ── Car Visual ── */
-  .car-stage{position:relative;height:190px;display:flex;align-items:center;justify-content:center;margin:0 -20px;overflow:hidden}
-  .car-stage .glow{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:240px;height:100px;border-radius:50%;background:radial-gradient(ellipse,rgba(22,120,255,.06)0%,transparent 70%);transition:all .6s ease}
-  .car-stage .glow.unlocked{background:radial-gradient(ellipse,rgba(48,209,88,.1)0%,transparent 70%)}
-  .car-stage .glow.locked{background:radial-gradient(ellipse,rgba(255,69,58,.06)0%,transparent 70%)}
-  .car-svg-wrap{position:relative;width:300px;height:165px}
+  /* ── Car Hero Area ── */
+  .car-hero{position:relative;height:230px;display:flex;align-items:center;justify-content:center;margin:0 -20px;overflow:hidden}
+  .car-hero .glow{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:280px;height:120px;border-radius:50%;background:radial-gradient(ellipse,rgba(22,120,255,.06) 0%,transparent 70%);transition:all .6s ease}
+  .car-hero .glow.unlocked{background:radial-gradient(ellipse,rgba(48,209,88,.1) 0%,transparent 70%)}
+  .car-hero .glow.locked{background:radial-gradient(ellipse,rgba(255,69,58,.06) 0%,transparent 70%)}
+  .car-svg-wrap{position:relative;width:320px;height:175px}
   .car-svg-wrap.shake{animation:carShake .3s}
   @keyframes carShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
   .car-svg-wrap.frunk-open{transform:translateY(-4px)}
@@ -58,7 +38,24 @@
   .car-svg-wrap.honk{animation:carHonk .15s 3}
   @keyframes carHonk{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
 
-  /* ── Lock Button ── */
+  /* ── Car State Badge ── */
+  .car-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--onSurfaceDim);display:flex;align-items:center;gap:4px;border:1px solid rgba(255,255,255,.06);z-index:2}
+  .car-badge .bd-dot{width:5px;height:5px;border-radius:50%}
+
+  /* ── Battery Bar ── */
+  .batt-bar{display:flex;align-items:center;gap:12px;padding:4px 0 6px;margin-top:-4px}
+  .batt-bar .bb-left{display:flex;align-items:center;gap:10px}
+  .batt-bar .batt-ring{position:relative;width:44px;height:44px;flex-shrink:0}
+  .batt-bar .batt-ring svg{transform:rotate(-90deg)}
+  .batt-bar .batt-ring .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+  .batt-bar .range-wrap{display:flex;flex-direction:column}
+  .batt-bar .range-wrap .range{font-size:22px;font-weight:700;letter-spacing:-.5px}
+  .batt-bar .range-wrap .range-unit{font-size:11px;font-weight:500;color:var(--onSurfaceDim);margin-left:1px}
+  .batt-bar .range-wrap .sub{font-size:10px;color:var(--onSurfaceMuted)}
+  .batt-bar .bb-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .batt-bar .bb-stat{text-align:center}
+  .batt-bar .bb-stat .val{font-size:14px;font-weight:600}
+  .batt-bar .bb-stat .lbl{font-size:9px;color:var(--onSurfaceMuted);margin-top:0}
   .lock-section{padding:2px 0 6px}
   .lock-btn{width:100%;padding:16px;border-radius:var(--radius);border:none;background:var(--card);border:1px solid var(--cardBorder);font-family:inherit;font-size:16px;font-weight:600;color:var(--onSurface);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
   .lock-btn.locked{background:var(--redDim);border-color:rgba(255,69,58,.2);color:var(--red)}
@@ -194,35 +191,8 @@
   <!-- Controls Panel -->
   <div class="panel active" id="panel-controls">
 
-    <!-- Status Card -->
-    <div class="status-card" id="statusCard">
-      <div class="sc-top">
-        <div class="sc-battery">
-          <div class="batt-ring">
-            <svg width="48" height="48" viewBox="0 0 48 48">
-              <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3"/>
-              <circle cx="24" cy="24" r="20" fill="none" stroke="var(--green)" stroke-width="3" stroke-dasharray="125.6" stroke-dashoffset="31.4" id="battArc" stroke-linecap="round"/>
-            </svg>
-            <span class="pct" id="battPct">--</span>
-          </div>
-          <div class="batt-info">
-            <div><span class="range" id="rangeKm">--</span><span class="range-unit">km</span></div>
-            <span class="sub" id="battSub">续航里程</span>
-          </div>
-        </div>
-        <div class="sc-right">
-          <div><span class="temp" id="ambientTemp">--</span><span class="temp-unit">°C</span></div>
-          <span class="sub" id="gearDisplay">P</span>
-        </div>
-      </div>
-      <div class="sc-bottom">
-        <div class="sc-stat"><div class="val" id="statCharge">--</div><div class="lbl">充电口</div></div>
-        <div class="sc-stat"><div class="val" id="statDoor">--</div><div class="lbl">车门</div></div>
-        <div class="sc-stat"><div class="val" id="statWindow">--</div><div class="lbl">车窗</div></div>
-        <div class="sc-stat"><div class="val" id="statDrive">--</div><div class="lbl">挡位</div></div>
-      </div>
-    </div>
-    <div class="car-stage" id="carStage">
+    <!-- Car Hero Area -->
+    <div class="car-hero" id="carStage">
       <div class="glow" id="carGlow"></div>
       <div class="car-svg-wrap" id="carWrap">
         <svg viewBox="0 0 300 170" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -339,7 +309,28 @@
           <rect x="4" y="4" width="292" height="162" stroke="rgba(79,195,247,.06)" stroke-width=".2" fill="none"/>
         </svg>
       </div><!-- /car-svg-wrap -->
-      <div class="car-state-badge"><span class="state-dot" id="stateDot" style="background:var(--onSurfaceMuted)"></span><span id="stateLabel">就绪</span></div>
+      <div class="car-badge"><span class="bd-dot" id="stateDot" style="background:var(--onSurfaceMuted)"></span><span id="stateLabel">就绪</span></div>
+    </div><!-- /car-hero -->
+
+    <!-- Battery Bar -->
+    <div class="batt-bar">
+      <div class="bb-left">
+        <div class="batt-ring">
+          <svg width="44" height="44" viewBox="0 0 44 44">
+            <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3"/>
+            <circle cx="22" cy="22" r="18" fill="none" stroke="var(--green)" stroke-width="3" stroke-dasharray="113.1" stroke-dashoffset="28.3" id="battArc" stroke-linecap="round"/>
+          </svg>
+          <span class="pct" id="battPct">--</span>
+        </div>
+        <div class="range-wrap">
+          <div><span class="range" id="rangeKm">--</span><span class="range-unit">km</span></div>
+          <span class="sub" id="battSub">续航里程</span>
+        </div>
+      </div>
+      <div class="bb-right">
+        <div class="bb-stat"><div class="val" id="ambientTemp">--</div><div class="lbl">°C</div></div>
+        <div class="bb-stat"><div class="val" id="gearDisplay">P</div><div class="lbl">挡位</div></div>
+      </div>
     </div>
 
     <div class="lock-section">
@@ -1146,7 +1137,7 @@ async function runDiagnostics() {
 async function pollStatus(){
   const r=await api('GET','status');
   const dot=document.getElementById('connDot');const label=document.getElementById('connLabel');
-  if(!r){dot.className='conn-dot offline';label.textContent='未连接';CAR.connected=false;updateCarVisual();return}
+  if(!r){dot.className='conn-dot offline';label.textContent='未连接';CAR.connected=false;document.getElementById('stateDot').style.background='var(--onSurfaceMuted)';document.getElementById('stateLabel').textContent='离线';updateCarVisual();return}
   CAR.connected=true;
   dot.className=`conn-dot ${r.connected?'online':'offline'}`;
   label.textContent=r.connected?'已连接':'CAN离线';
@@ -1156,7 +1147,7 @@ async function pollStatus(){
     const pct=r.battery_soc;
     document.getElementById('battPct').textContent=pct;
     const circ=document.getElementById('battArc');
-    const circumference=125.6;
+    const circumference=113.1;
     const offset=circumference-(circumference*pct/100);
     circ.setAttribute('stroke-dashoffset',offset);
     circ.setAttribute('stroke',pct>50?'var(--green)':pct>20?'var(--amber)':'var(--red)');
@@ -1164,7 +1155,6 @@ async function pollStatus(){
 
   // Update range
   if(r.battery_soc!=null){
-    // Estimate range: 443km at 100%
     const estKm=Math.round(443*r.battery_soc/100);
     document.getElementById('rangeKm').textContent=estKm;
   }
@@ -1179,11 +1169,19 @@ async function pollStatus(){
     document.getElementById('ambientTemp').textContent=Math.round(r.ambient_temp_c);
   }
 
-  // Quick stats
-  document.getElementById('statCharge').textContent=r.charge_port?.state==='LOCKED'?'充电中':r.charge_port?.state==='OPEN'?'开启':'关闭';
-  document.getElementById('statDoor').textContent=r.doors?.locked?'已锁':'解锁';
-  document.getElementById('statWindow').textContent=r.windows||'--';
-  document.getElementById('statDrive').textContent=r.drive_mode||'--';
+  // Update state badge
+  const stateDot=document.getElementById('stateDot');
+  const stateLabel=document.getElementById('stateLabel');
+  if(r.doors?.locked){
+    stateDot.style.background='var(--red)';
+    stateLabel.textContent='已锁';
+  }else if(r.charge_port?.charging){
+    stateDot.style.background='var(--green)';
+    stateLabel.textContent='充电中';
+  }else{
+    stateDot.style.background='var(--onSurfaceMuted)';
+    stateLabel.textContent='就绪';
+  }
 
   updateCarVisual();
 }
