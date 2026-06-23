@@ -1,4 +1,4 @@
-# 🚗 Tesla Model S CAN Server · Remote
+# 🚗 Tesla CANRemote by OpenFrunk
 
 <p align="center">
   <img src="https://img.shields.io/badge/status-unfinished-yellow" alt="unfinished">
