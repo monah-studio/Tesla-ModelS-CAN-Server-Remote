@@ -7,6 +7,10 @@
   <img src="https://img.shields.io/badge/languages-4-orange" alt="lang-4">
 </p>
 
+<p align="center">
+  <img src="assets/app-preview.jpg" alt="Tesla Model S CAN Server App Preview" width="600">
+</p>
+
 > **[ English ]** · **[ 简体中文 ]** · **[ 日本語 ]** · **[ 한국어 ]**
 
 ---
