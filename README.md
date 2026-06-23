@@ -303,7 +303,7 @@ tesla-local-control/
 
 ## 👤 About the Author
 
-**Tim Wynter** — lawyer, mathematician, full-stack engineer. GitHub native. Deep-tech early-stage angel investor. Weekend hacker who refuses to let a cloud server dictate what his legally owned car can or cannot do.
+**Tim**
 
 This repo is a conversation starter, not a product pitch. PRs welcome. Issues welcome. Ideas welcome. Let's build together.
 
