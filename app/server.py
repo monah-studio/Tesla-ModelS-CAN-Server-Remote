@@ -14,6 +14,7 @@ from flask_cors import CORS
 
 from tesla_can import TeslaCANDriver
 from tesla_models import TESLA_MODELS, TESLA_COLORS, decode_vin
+from tesla_models import WHEEL_SIZES, MCU_TYPES, INTERIOR_COLORS, BODY_STYLES
 
 # ── Config from environment ──────────────────────────────────────────
 HOST      = os.environ.get("TESLA_HOST", "0.0.0.0")
@@ -95,6 +96,43 @@ def get_model(model_id):
     if m:
         return jsonify(m)
     return jsonify({"error": "Model not found"}), 404
+
+# ── Vehicle Configuration ─────────────────────────────────────────────
+@app.route("/api/config/colors")
+def get_colors():
+    """Return all Tesla paint colors + wrap options."""
+    return jsonify(TESLA_COLORS)
+
+@app.route("/api/config/wheels")
+def get_wheels():
+    """Return all wheel size options."""
+    return jsonify(WHEEL_SIZES)
+
+@app.route("/api/config/mcu")
+def get_mcu_types():
+    """Return MCU / FSD computer upgrade options."""
+    return jsonify(MCU_TYPES)
+
+@app.route("/api/config/interior")
+def get_interior_colors():
+    """Return interior leather color options with HEX codes."""
+    return jsonify(INTERIOR_COLORS)
+
+@app.route("/api/config/body")
+def get_body_styles():
+    """Return body style / facelift / kit options."""
+    return jsonify(BODY_STYLES)
+
+@app.route("/api/config/all")
+def get_all_config():
+    """Return all vehicle configuration options at once."""
+    return jsonify({
+        "colors": TESLA_COLORS,
+        "wheels": WHEEL_SIZES,
+        "mcu": MCU_TYPES,
+        "interior": INTERIOR_COLORS,
+        "body_styles": BODY_STYLES,
+    })
 
 @app.route("/api/colors")
 def list_colors():

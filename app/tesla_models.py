@@ -80,6 +80,53 @@ TESLA_COLORS = [
     {"id": "stealth_grey",     "name_cn": "隐形灰",      "name_en": "Stealth Grey",             "hex": "#4a4a52"},
     {"id": "ultra_red",        "name_cn": "超红",        "name_en": "Ultra Red",                "hex": "#d42e3a"},
     {"id": "quicksilver",      "name_cn": "水银银",      "name_en": "Quicksilver",              "hex": "#b8b8bc"},
+    {"id": "cream",            "name_cn": "奶油白",      "name_en": "Cream",                    "hex": "#f5e6d3"},
+    {"id": "matte_black",      "name_cn": "哑光黑",      "name_en": "Matte Black Wrap",         "hex": "#1c1c1c"},
+    {"id": "matte_grey",       "name_cn": "哑光灰",      "name_en": "Matte Grey Wrap",          "hex": "#5c5c5c"},
+    {"id": "satin_darkgrey",   "name_cn": "锻面深灰",    "name_en": "Satin Dark Grey Wrap",     "hex": "#3d3d3d"},
+    {"id": "custom",           "name_cn": "⿈自定义车衣色", "name_en": "Custom Wrap Color",       "hex": None},
+]
+
+# ── Wheel Sizes ──────────────────────────────────────────────────────
+WHEEL_SIZES = [
+    {"id": "stock_19",    "name_cn": "19寸 标准轮毂",    "name_en": '19" Stock Wheels'},
+    {"id": "slipstream_19","name_cn":"19寸 Slipstream",  "name_en": '19" Slipstream'},
+    {"id": "turbine_21",  "name_cn": "21寸 Turbine",     "name_en": '21" Turbine'},
+    {"id": "arachnid_21", "name_cn": "21寸 Arachnid",    "name_en": '21" Arachnid'},
+    {"id": "tempest_19",  "name_cn": "19寸 Tempest",     "name_en": '19" Tempest (2021+)'},
+    {"id": "zero_g_20",   "name_cn": "20寸 Zero-G",      "name_en": '20" Zero-G Performance'},
+    {"id": "cyber_19",    "name_cn": "19寸 Cyber Stream","name_en": '19" Cyber Stream (2024+)'},
+    {"id": "custom_wheels","name_cn":"自定义轮毂",        "name_en": "Custom Wheels"},
+]
+
+# ── MCU / Computer Upgrade ───────────────────────────────────────────
+MCU_TYPES = [
+    {"id": "mcu1",   "name_cn": "MCU 1 (Tegra)",       "name_en": "MCU 1 (NVIDIA Tegra)"},
+    {"id": "mcu2",   "name_cn": "MCU 2 (Intel Atom)",  "name_en": "MCU 2 (Intel Atom) — Upgraded"},
+    {"id": "fsd3",   "name_cn": "FSD Computer 3 (HW3)","name_en": "HW3 / FSD Computer 3 — Full Self-Driving"},
+    {"id": "hw4",    "name_cn": "FSD Computer 4 (HW4)","name_en": "HW4 / FSD Computer 4 — Latest"},
+]
+
+# ── Interior Trim / Leather Colors ───────────────────────────────────
+INTERIOR_COLORS = [
+    {"id": "black",          "name_cn": "黑色",    "name_en": "Black",           "hex": "#1a1a1a"},
+    {"id": "white",          "name_cn": "白色",    "name_en": "White",           "hex": "#f0ede6"},
+    {"id": "cream",          "name_cn": "奶油色",  "name_en": "Cream",           "hex": "#f5e6d3"},
+    {"id": "tan",            "name_cn": "棕褐色",  "name_en": "Tan",             "hex": "#c4a882"},
+    {"id": "grey",           "name_cn": "灰色",    "name_en": "Grey",            "hex": "#8a8a8a"},
+    {"id": "oak",            "name_cn": "橡木色",  "name_en": "Oak Wood",        "hex": "#c19a6b"},
+    {"id": "red_plaid",      "name_cn": "红色 (Plaid)", "name_en":"Red Plaid Edition","hex":"#c41e2a"},
+    {"id": "custom_leather", "name_cn": "⿈自定义内装色","name_en":"Custom Leather Color","hex": None},
+]
+
+# ── Body Styles / Facelift ───────────────────────────────────────────
+BODY_STYLES = [
+    {"id": "stock_og",    "name_cn": "原厂老款 (2012-2016)", "name_en": "Stock OG (2012-2016)"},
+    {"id": "stock_facelift","name_cn":"原厂改款 (2016-2021)","name_en":"Stock Facelift (2016-2021)"},
+    {"id": "stock_palladium","name_cn":"原厂 Palladium (2021+)","name_en":"Stock Palladium (2021+)"},
+    {"id": "unplugged_perf","name_cn":"Unplugged Performance 套件","name_en":"Unplugged Performance Kit"},
+    {"id": "prior_design","name_cn":"Prior Design 宽体","name_en":"Prior Design Widebody"},
+    {"id": "custom_body", "name_cn": "⿈自定义外观套件","name_en": "Custom Body Kit"},
 ]
 
 
