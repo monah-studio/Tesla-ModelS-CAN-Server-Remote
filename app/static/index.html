@@ -65,25 +65,38 @@ body{font-family:-apple-system,'Inter','PingFang HK','Helvetica Neue',sans-serif
 .car-wrap{position:relative;width:320px;height:170px}
 .car-wrap.shake{animation:shk .3s}
 @keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
-.car-wrap.hop{animation:hop .12s 3}
-@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
-.car-hero .car-model{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:500;color:var(--onSurfaceMuted);background:rgba(0,0,0,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:3px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.04)}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
 
-.car-wrap .dr-seams{transition:opacity .3s}
-.car-wrap.unlocked .dr-seams{opacity:1 !important}
-.car-wrap .state-frunk path,.car-wrap .state-frunk line,.car-wrap .state-trunk path,.car-wrap .state-trunk line{transition:opacity .3s}
-.car-wrap.frunk .state-frunk path,.car-wrap.frunk .state-frunk line{opacity:1 !important}
-.car-wrap.trunk .state-trunk path,.car-wrap.trunk .state-trunk line{opacity:1 !important}
-.car-wrap .state-lights{transition:opacity .15s}
-.car-wrap.lights .state-lights{opacity:1 !important}
-.car-wrap .state-flash{transition:opacity .08s}
-.car-wrap.flash .state-flash{opacity:1 !important}
-.car-wrap .state-charge{transition:opacity .3s}
-.car-wrap.charge .state-charge{opacity:1 !important}
+/* ── Animations ── */
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes countUp{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes batteryPulse{0%,100%{box-shadow:0 0 0 0 rgba(52,199,89,.3)}50%{box-shadow:0 0 0 6px rgba(52,199,89,0)}}
+.panel{display:none;padding-top:2px}
+.panel.active{display:block;animation:fadeIn .25s ease-out}
+.st-dot.ok{background:var(--green);box-shadow:0 0 6px rgba(52,199,89,.4);animation:pulse 2s infinite}
+.st-dot.off{background:var(--onSurfaceMuted);animation:none}
+.st-dot.err{background:var(--red);animation:none}
+.cb-fill{transition:width .8s cubic-bezier(.25,.46,.45,.94);border-radius:4px;height:100%;position:relative}
+.cb-fill::after{content:'';position:absolute;right:0;top:-1px;width:8px;height:calc(100%+2px);border-radius:4px;background:inherit;filter:brightness(1.3)}
+.lock-btn{animation:countUp .3s ease-out}
+.qc{transition:all .12s;animation:fadeIn .3s ease-out both}
+.qc:nth-child(1){animation-delay:0s}
+.qc:nth-child(2){animation-delay:.03s}
+.qc:nth-child(3){animation-delay:.06s}
+.qc:nth-child(4){animation-delay:.09s}
+.qc:nth-child(5){animation-delay:.12s}
+.qc:nth-child(6){animation-delay:.15s}
+.qc:nth-child(7){animation-delay:.18s}
+.qc:nth-child(8){animation-delay:.21s}
+.qc:nth-child(9){animation-delay:.24s}
+.qc:nth-child(10){animation-delay:.27s}
 .car-wrap:not(.connected){opacity:.5;transition:opacity .3s}
 
-/* ── Battery Card ── */
-.c-batt{background:var(--card);border:1px solid var(--cardBorder);border-radius:var(--radius);padding:16px;margin:2px 0 12px;display:flex;align-items:center;gap:14px}
+/* ── Toast ── */
+#toast{position:fixed;top:env(safe-area-inset-top,12px);left:16px;right:16px;max-width:480px;margin:0 auto;background:var(--surface3);color:var(--onSurface);padding:10px 16px;border-radius:12px;font-size:12px;font-weight:500;z-index:999;box-shadow:0 4px 20px rgba(0,0,0,.3);transform:translateY(-80px);opacity:0;transition:transform .35s cubic-bezier(.25,.46,.45,.94),opacity .3s;pointer-events:none;text-align:center}
+#toast.show{transform:translateY(0);opacity:1}
 .c-batt .cb-icon{font-size:26px}
 .c-batt .cb-main{flex:1}
 .c-batt .cb-num{font-size:32px;font-weight:800;letter-spacing:-1px;line-height:1}
@@ -146,10 +159,6 @@ body{font-family:-apple-system,'Inter','PingFang HK','Helvetica Neue',sans-serif
 .b-dock .dk-item .dkl{font-size:9px;font-weight:500}
 .b-dock .dk-item.active .dkl{color:var(--accent);font-weight:600}
 .b-dock .dk-item.active .dki{color:var(--accent)}
-
-/* ── Panels ── */
-.panel{display:none;padding-top:2px}
-.panel.active{display:block}
 
 /* ── Dropdown / Overlays ── */
 .overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.65);display:none;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
