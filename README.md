@@ -101,7 +101,7 @@ Which Tesla shares which CAN hardware? Not all cars are wired the same.
 |-------|:-----:|:------------:|:-------:|:-----------|:---------|
 | **Model S / X** (pre-2021) | 2012–2020 | Body CAN (BCAN) + Chassis CAN (CHCAN) | 125 kbps | BCAN_H=pin1, BCAN_L=pin9 | CANable 2.0 / MCP2515 |
 | **Model S / X** (Palladium) | 2021+ | Ethernet gateway — no direct CAN access | — | Not OBD-accessible | ❌ Not supported |
-| **Model 3 / Y** | 2017+ | Private CAN (behind ETH gateway) | — | Not OBD-accessible | ❌ Requires BLE/cloud SDK |
+| **Model 3 / Y** | 2017+ | Private CAN (behind ETH gateway) | — | Not OBD-accessible | ✅ See solutions below |
 
 > ⚠️ **This project is built for pre-2021 Model S/X (Body CAN via OBD-II).** Model 3/Y, Cybertruck, and 2021+ Model S/X use an Ethernet gateway that blocks direct CAN access. For those, see [Tesla Vehicle Command SDK](https://github.com/teslamotors/vehicle-command) (BLE-based).
 
@@ -129,6 +129,21 @@ OBD-II port (facing forward):
 ```
 
 Full wiring details → [`wiring.md`](./wiring.md) (MCP2515) or [CANable quickstart](https://canable.io/getting-started.html).
+
+### Model 3 / Y Solutions
+
+Model 3/Y use a different architecture — an Ethernet gateway sits between the OBD port and the vehicle CAN buses. You cannot plug a CANable into OBD and talk to the car directly. However, there are **three proven approaches**:
+
+| Method | What it does | How | Hardware Needed | Works Offline? | Open Source? |
+|--------|-------------|-----|:---------------:|:--------------:|:------------:|
+| **🧩 OVMS Module** 🥇 | Full CAN control via add-on module | [Open Vehicles](https://docs.openvehicles.com) installs its own CAN transceiver by tapping into the vehicle CAN behind the gateway | OVMS v3/v4 module + SIM card | ✅ Yes — CAN bypass | ✅ MIT |
+| **📱 Tesla Vehicle Command SDK** | Official BLE-based control (lock, unlock, climate, etc.) | Phone pairs with car via BLE, sends signed commands over Tesla's proprietary protocol | None (phone only) | ✅ Yes — BLE direct | ✅ Apache 2.0 |
+| **☁️ Tesla Fleet API** | Cloud-based REST API | Server-side API calls via `https://fleet-api.prd.vn.cloud.tesla.com` | Internet connection | ❌ Needs cloud | ✅ |
+
+**Recommendation for this project's architecture (self-hosted + offline):**
+- **OVMS is the closest equivalent** — a dedicated CAN module that speaks directly to the vehicle's CAN buses, accessible over WiFi/BLE/serial. Works without cloud.
+- The **Tesla Vehicle Command SDK** is also worth exploring for its low-latency BLE path, but requires pairing each phone with the car (no single board as relay).
+- If you already own a Model 3/Y and want to build something similar to this project, start with [OVMS](https://docs.openvehicles.com) or the [vehicle-command SDK](https://github.com/teslamotors/vehicle-command).
 
 ### What about other years?
 
