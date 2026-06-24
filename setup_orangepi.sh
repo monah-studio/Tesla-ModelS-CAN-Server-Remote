@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ──────────────────────────────────────────────────────────────────────
-# Tesla Local Control — Orange Pi 4 Pro 一键部署
+# Tesla CANServer MyRemote — Orange Pi 4 Pro 一键部署
 # 适用：2015 Model S 85D (CAN 总线方案)
 # ──────────────────────────────────────────────────────────────────────
 # 在 Orange Pi 上运行:
@@ -16,7 +16,7 @@ log()  { echo -e "${GREEN}[✓]${NC} $1"; }
 warn() { echo -e "${YELLOW}[!]${NC} $1"; }
 
 echo "╔═══════════════════════════════════════════╗"
-echo "║  Tesla Local Control — Orange Pi 4 Pro   ║"
+echo "║  Tesla CANServer MyRemote — Orange Pi 4 Pro   ║"
 echo "║  2015 Model S 85D · CAN 总线方案         ║"
 echo "╚═══════════════════════════════════════════╝"
 

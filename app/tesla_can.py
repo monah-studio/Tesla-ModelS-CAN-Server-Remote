@@ -1,5 +1,5 @@
 """
-Tesla Local Control — CAN Bus Driver for 2015 Model S 85D
+Tesla CANServer MyRemote — CAN Bus Driver for 2015 Model S 85D
 ==========================================================
 Communicates with Body CAN (BCAN) at 125 kbps via OBD-II port.
 Handles: lock/unlock, frunk, trunk, windows, lights, horn,

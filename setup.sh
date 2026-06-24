@@ -1,6 +1,6 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════════════
-# Tesla CAN Server — One-Click Setup
+# Tesla CANServer MyRemote — One-Click Setup
 # ═══════════════════════════════════════════════════════════════════════
 # Supports: Orange Pi 4 Pro, Raspberry Pi 3/4/5
 # - Auto-detect CANable 2.0 / MCP2515
@@ -10,7 +10,7 @@
 # ───────────────────────────────────────────────────────────────────────
 # Usage:
 #   curl -fsSL https://raw.githubusercontent.com/monah-studio/\
-# Tesla-ModelS-CAN-Server-Remote/main/setup.sh | bash
+# Tesla-CANServer-MyRemote/main/setup.sh | bash
 #
 # Or after clone:
 #   chmod +x setup.sh && sudo ./setup.sh
@@ -471,9 +471,9 @@ echo ""
 SVC_STATUS=$(systemctl is-active tesla-control 2>/dev/null || echo "inactive")
 
 if [[ "$SVC_STATUS" == "active" ]]; then
-  echo -e "${GREEN}${BOLD}  ✅ Tesla CAN Server is RUNNING${NC}"
+  echo -e "${GREEN}${BOLD}  ✅ Tesla CANServer MyRemote is RUNNING${NC}"
 else
-  echo -e "${RED}${BOLD}  ❌ Tesla CAN Server is NOT running${NC}"
+  echo -e "${RED}${BOLD}  ❌ Tesla CANServer MyRemote is NOT running${NC}"
   echo ""
   warn "Check logs: sudo journalctl -u tesla-control -n 30 --no-pager"
 fi
@@ -495,7 +495,7 @@ header "✅ Setup Complete"
 
 echo ""
 echo -e "${BOLD}${CYAN}  ╔════════════════════════════════════════════════╗${NC}"
-echo -e "${BOLD}${CYAN}  ║         🚗 Tesla CAN Server Ready             ║${NC}"
+echo -e "${BOLD}${CYAN}  ║         🚗 Tesla CANServer MyRemote Ready             ║${NC}"
 echo -e "${BOLD}${CYAN}  ╚════════════════════════════════════════════════╝${NC}"
 echo ""
 

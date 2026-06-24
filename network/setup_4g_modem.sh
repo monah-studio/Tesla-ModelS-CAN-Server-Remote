@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ──────────────────────────────────────────────────────────────────────
-# Tesla Local Control — 4G/5G Modem + 始终在线
+# Tesla CANServer MyRemote — 4G/5G Modem + 始终在线
 # ──────────────────────────────────────────────────────────────────────
 # 在 Orange Pi 上运行：
 #   bash setup_4g_modem.sh

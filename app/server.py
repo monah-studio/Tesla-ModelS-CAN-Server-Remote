@@ -1,5 +1,5 @@
 """
-Tesla Local Control — REST API (CAN version for 2015 Model S 85D)
+Tesla CANServer MyRemote — REST API (CAN version for 2015 Model S 85D)
 ==================================================================
 Flask backend + Tesla model database + VIN decoder
 """
@@ -286,7 +286,7 @@ def not_found(e):
 
 # ── Main ─────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    log.info("🚗 Tesla Local Control (CAN) — Model S 85D (2015)")
+    log.info("🚗 Tesla CANServer MyRemote (CAN) — Model S 85D (2015)")
     log.info(f"   Listening: {HOST}:{PORT}")
     log.info(f"   Auth: {'ON' if API_TOKEN else 'OFF'}")
     log.info(f"   Open: http://localhost:{PORT}")

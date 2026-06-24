@@ -94,7 +94,7 @@ Download the official image and flash to a microSD card (16GB+):
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/monah-studio/\
-Tesla-ModelS-CAN-Server-Remote/main/setup.sh | sudo bash
+Tesla-CANServer-MyRemote/main/setup.sh | sudo bash
 ```
 
 Or download the [latest release](https://github.com/monah-studio/Tesla-CANServer-MyRemote/releases/latest) and run:
@@ -109,7 +109,7 @@ The script auto-detects your hardware, installs dependencies, pulls the latest s
 
 ```bash
 git clone https://github.com/monah-studio/Tesla-CANServer-MyRemote.git
-cd Tesla-ModelS-CAN-Server-Remote/app
+cd Tesla-CANServer-MyRemote/app
 python3 -m venv venv && source venv/bin/activate
 pip install flask flask-cors python-can
 python server.py
@@ -258,7 +258,7 @@ No setup needed. Orange Pi broadcasts a BLE beacon (`TeslaControl-` prefix) cont
 ## 🧱 Project Structure
 
 ```
-Tesla-ModelS-CAN-Server-Remote/
+Tesla-CANServer-MyRemote/
 ├── app/
 │   ├── server.py           # Flask REST API
 │   ├── tesla_can.py        # CAN bus driver (socketcan)
@@ -434,7 +434,7 @@ Based on legal compliance boundaries, basic mathematical logic modeling, and adv
 # 1. Flash Orange Pi 4 Pro with official Ubuntu 1.0.6 Jammy Server Linux image
 # 2. Clone this repo
 git clone https://github.com/monah-studio/Tesla-CANServer-MyRemote.git
-cd Tesla-ModelS-CAN-Server-Remote
+cd Tesla-CANServer-MyRemote
 
 # 3. Run one-click setup
 bash setup_orangepi.sh
@@ -564,7 +564,7 @@ Built with lots of ☕ and stubbornness in Hong Kong SAR.
 # 1. 为 Orange Pi 4 Pro 刷入官方 Ubuntu 1.0.6 Jammy Server Linux 镜像
 # 2. 克隆仓库
 git clone https://github.com/monah-studio/Tesla-CANServer-MyRemote.git
-cd Tesla-ModelS-CAN-Server-Remote
+cd Tesla-CANServer-MyRemote
 
 # 3. 运行一键部署脚本
 bash setup_orangepi.sh
@@ -645,7 +645,7 @@ MIT — 随便用。只是别因为你的车出了意外来起诉我。这是个
 ## 📁 Project Structure
 
 ```
-Tesla-ModelS-CAN-Server-Remote/
+Tesla-CANServer-MyRemote/
 ├── app/
 │   ├── tesla_can.py          # CAN bus driver (socketcan interface)
 │   ├── tesla_models.py       # 39 Tesla models database + VIN decoder

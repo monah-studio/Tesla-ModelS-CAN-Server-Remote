@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ──────────────────────────────────────────────────────────────────────
-# Tesla Local Control — 网络层部署
+# Tesla CANServer MyRemote — 网络层部署
 # DDNS + Tailscale P2P + Cloudflare Tunnel + 蓝牙发现
 # ──────────────────────────────────────────────────────────────────────
 # 在 Orange Pi 上运行：
@@ -10,7 +10,7 @@
 set -euo pipefail
 
 echo "╔═══════════════════════════════════════════╗"
-echo "║  Tesla Local Control — 网络层             ║"
+echo "║  Tesla CANServer MyRemote — 网络层             ║"
 echo "║  DDNS + Tailscale + BLE Discovery        ║"
 echo "╚═══════════════════════════════════════════╝"
 
@@ -130,7 +130,7 @@ sudo apt install -y bluez bluez-tools python3-dbus
 sudo tee /opt/tesla-control/network/ble_advertise.py > /dev/null << 'PYEOF'
 #!/usr/bin/env python3
 """
-BLE Beacon — Tesla Local Control 蓝牙自动发现
+BLE Beacon — Tesla CANServer MyRemote 蓝牙自动发现
 ==============================================
 当手机靠近车辆时，Pi 通过 BLE 广播自身信息，
 手机 App 自动发现并提示连接。
