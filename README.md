@@ -50,7 +50,7 @@
     <h3>⚡ Control</h3>
     Lock/unlock · Frunk/trunk ·<br>
     Lights · Horn · Windows ·<br>
-    HVAC · Charge port · Mirrors · NFC
+    HVAC · Charge port¹ · Mirrors · NFC
   </td>
   <td width="33%" align="center">
     <h3>📊 Monitor</h3>
@@ -233,7 +233,7 @@ No setup needed. Orange Pi broadcasts a BLE beacon (`TeslaControl-` prefix) cont
 | `POST` | `/api/windows_vent` | 🪟 Vent windows | `0x215` | ✅ |
 | `POST` | `/api/windows_close` | 🪟 Close windows | `0x215` | ✅ |
 | `POST` | `/api/charge_port_open` | 🔌 Open charge port | `0x312` | 🔜 Need verification |
-| `POST` | `/api/charge_port_close` | 🔌 Close charge port | `0x312` | 🔜 Need verification |
+| `POST` | `/api/charge_port_close` | 🔌 Close charge port¹ | `0x312` | 🔜 Need verification |
 | `POST` | `/api/mirrors_fold` | 🪞 Fold side mirrors | `0x210` | 🔜 Need verification |
 | `POST` | `/api/mirrors_unfold` | 🪞 Unfold side mirrors | `0x210` | 🔜 Need verification |
 | `POST` | `/api/interior_lights_on` | 🔦 Interior lights on | `0x240` | 🔜 Need verification |
@@ -243,6 +243,8 @@ No setup needed. Orange Pi broadcasts a BLE beacon (`TeslaControl-` prefix) cont
 
 > ✅ = Code implemented and deployed. CANable hardware required to test on vehicle.  
 > 🔜 = Code implemented, CAN IDs from community databases — vehicle testing pending.
+>
+> ¹ **Close charge port** only works on **2016+ Model S/X**. Pre-2016 vehicles (including the 2015 85D) use a mechanical latch that cannot be commanded via CAN. Use NFC trigged shortcut as workaround.
 
 ### 📊 Status & Data
 
