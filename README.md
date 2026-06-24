@@ -307,30 +307,29 @@ No setup needed. Orange Pi broadcasts a BLE beacon (`TeslaControl-` prefix) cont
 | `GET` | `/api/status` | Full vehicle status (SoC, gear, speed, charge) |
 | `GET` | `/api/diagnostics` | System: CAN, 4G, Bluetooth, Internet, Tailscale |
 | `POST` | `/api/decode-vin` | Decode VIN → model, year, battery, range |
-| `GET` | `/api/models` | All 35 Tesla models in database |
+| `GET` | `/api/models` | All 34 Tesla models in database |
 | `GET` | `/api/config/all` | Colors, wheels, MCU, interior, body styles |
 
-### 🚗 Supported Models (35)
+### 🚗 Supported Models (34)
 
 | # | Model | Years | Battery | Range (km) | VIN Prefix |
 |---|-------|:-----:|:-------:|:----------:|:----------:|
 | | **Model S** |
-| 1 | Model S 40 | 2013 | 40kWh | 260 | `5YJSA1`, `5YJSA2` |
-| 2 | Model S 60 | 2013–2016 | 60kWh | 335 | `5YJSA1`, `5YJSA3` |
-| 3 | Model S 60D | 2014–2016 | 60kWh | 351 | `5YJSA7` |
-| 4 | Model S 85 | 2013–2015 | 85kWh | 426 | `5YJSA4` |
-| 5 | **Model S 85D** ⭐ | 2014–2016 | **85kWh** | **443** | `5YJSA7`, `5YJSB7` |
-| 6 | Model S P85 | 2013–2015 | 85kWh | 426 | `5YJSA5` |
-| 7 | Model S P85D | 2014–2016 | 85kWh | 436 | `5YJSA7` |
-| 8 | Model S 90 | 2015–2016 | 90kWh | 473 | `5YJSA8` |
-| 9 | Model S 90D | 2015–2017 | 90kWh | 473 | `5YJSA7` |
-| 10 | Model S P90D | 2015–2017 | 90kWh | 435 | `5YJSA7` |
-| 11 | Model S 100D | 2017–2020 | 100kWh | 539 | `5YJSA7` |
-| 12 | Model S P100D | 2017–2019 | 100kWh | 507 | `5YJSA7` |
-| 13 | Model S Long Range | 2019–2024 | 100kWh | 652 | `5YJSA7`, `LRW` |
-| 14 | Model S Plaid | 2021–2025 | 100kWh | 628 | `5YJSA7`, `LRW` |
-| 15 | Model S Plaid+ | 2022–2025 | 100kWh | 658 | `5YJSA7` |
-| 16 | Model S Standard Range | 2024– | 75kWh | 450 | `5YJSA7`, `LRW` |
+| 1 | Model S 60 | 2013–2016 | 60kWh | 335 | `5YJSA1`, `5YJSA3` |
+| 2 | Model S 60D | 2014–2016 | 60kWh | 351 | `5YJSA7` |
+| 3 | Model S 85 | 2013–2015 | 85kWh | 426 | `5YJSA4` |
+| 4 | **Model S 85D** ⭐ | 2014–2016 | **85kWh** | **443** | `5YJSA7`, `5YJSB7` |
+| 5 | Model S P85 | 2013–2015 | 85kWh | 426 | `5YJSA5` |
+| 6 | Model S P85D | 2014–2016 | 85kWh | 436 | `5YJSA7` |
+| 7 | Model S 90 | 2015–2016 | 90kWh | 473 | `5YJSA8` |
+| 8 | Model S 90D | 2015–2017 | 90kWh | 473 | `5YJSA7` |
+| 9 | Model S P90D | 2015–2017 | 90kWh | 435 | `5YJSA7` |
+| 10 | Model S 100D | 2017–2020 | 100kWh | 539 | `5YJSA7` |
+| 11 | Model S P100D | 2017–2019 | 100kWh | 507 | `5YJSA7` |
+| 12 | Model S Long Range | 2019–2024 | 100kWh | 652 | `5YJSA7`, `LRW` |
+| 13 | Model S Plaid | 2021–2025 | 100kWh | 628 | `5YJSA7`, `LRW` |
+| 14 | Model S Plaid+ | 2022–2025 | 100kWh | 658 | `5YJSA7` |
+| 15 | Model S Standard Range | 2024– | 75kWh | 450 | `5YJSA7`, `LRW` |
 | | **Model X** |
 | 17 | Model X 75D | 2016–2018 | 75kWh | 381 | `5YJXCA4`, `5YJXC` |
 | 18 | Model X 90D | 2015–2016 | 90kWh | 414 | `5YJXCA4`, `5YJXC` |
@@ -616,7 +615,7 @@ Based on legal compliance boundaries, basic mathematical logic modeling, and adv
 - 💡 Flash lights · 📯 Honk horn
 - 🪟 Vent windows · ⚡ Charging control
 - 📊 Real-time diagnostics (CAN / Bluetooth / 4G / Tailscale)
-- 🚘 VIN decoder — 35 Tesla models database
+- 🚘 VIN decoder — 34 Tesla models database
 - 🎨 Tesla + Material You style UI (dark theme)
 - 🌐 Multi-language UI (ZH / EN / JA / KO)
 - 📡 4 connection modes: Tailscale / DDNS / WiFi / BLE
@@ -775,7 +774,7 @@ Built with ☕ and stubbornness in Hong Kong SAR.
 - 💡 闪灯 · 📯 鸣笛
 - 🪟 车窗通风 · ⚡ 充电控制
 - 📊 实时诊断（CAN / 蓝牙 / 4G / Tailscale）
-- 🚘 VIN 解码器 — 35 款 Tesla 车型数据库
+- 🚘 VIN 解码器 — 34 款 Tesla 车型数据库
 - 🎨 Tesla + Material You 风格 UI（深色主题）
 - 🌐 多语言界面（中文 / 英文 / 日文 / 韩文）
 - 📡 四种连接模式：Tailscale / DDNS / WiFi / BLE
@@ -1011,30 +1010,29 @@ python server.py
 | `GET` | `/api/status` | 完整车辆状态（电量、档位、速度、充电） |
 | `GET` | `/api/diagnostics` | 系统诊断（CAN/4G/蓝牙/Tailscale） |
 | `POST` | `/api/decode-vin` | 解码 VIN → 车型、年份、电池、续航 |
-| `GET` | `/api/models` | 全部 35 款 Tesla 车型数据库 |
+| `GET` | `/api/models` | 全部 34 款 Tesla 车型数据库 |
 | `GET` | `/api/config/all` | 颜色、轮毂、MCU、内饰、车身样式 |
 
-### 🚗 支持的车型 (35 款)
+### 🚗 支持的车型 (34 款)
 
 | # | 车型 | 年份 | 电池 | 续航 (km) | VIN 前缀 |
 |---|------|:----:|:----:|:---------:|:--------:|
 | | **Model S** |
-| 1 | Model S 40 | 2013 | 40kWh | 260 | `5YJSA1`, `5YJSA2` |
-| 2 | Model S 60 | 2013–2016 | 60kWh | 335 | `5YJSA1`, `5YJSA3` |
-| 3 | Model S 60D | 2014–2016 | 60kWh | 351 | `5YJSA7` |
-| 4 | Model S 85 | 2013–2015 | 85kWh | 426 | `5YJSA4` |
-| 5 | **Model S 85D** ⭐ | 2014–2016 | **85kWh** | **443** | `5YJSA7`, `5YJSB7` |
-| 6 | Model S P85 | 2013–2015 | 85kWh | 426 | `5YJSA5` |
-| 7 | Model S P85D | 2014–2016 | 85kWh | 436 | `5YJSA7` |
-| 8 | Model S 90 | 2015–2016 | 90kWh | 473 | `5YJSA8` |
-| 9 | Model S 90D | 2015–2017 | 90kWh | 473 | `5YJSA7` |
-| 10 | Model S P90D | 2015–2017 | 90kWh | 435 | `5YJSA7` |
-| 11 | Model S 100D | 2017–2020 | 100kWh | 539 | `5YJSA7` |
-| 12 | Model S P100D | 2017–2019 | 100kWh | 507 | `5YJSA7` |
-| 13 | Model S Long Range | 2019–2024 | 100kWh | 652 | `5YJSA7`, `LRW` |
-| 14 | Model S Plaid | 2021–2025 | 100kWh | 628 | `5YJSA7`, `LRW` |
-| 15 | Model S Plaid+ | 2022–2025 | 100kWh | 658 | `5YJSA7` |
-| 16 | Model S Standard Range | 2024– | 75kWh | 450 | `5YJSA7`, `LRW` |
+| 1 | Model S 60 | 2013–2016 | 60kWh | 335 | `5YJSA1`, `5YJSA3` |
+| 2 | Model S 60D | 2014–2016 | 60kWh | 351 | `5YJSA7` |
+| 3 | Model S 85 | 2013–2015 | 85kWh | 426 | `5YJSA4` |
+| 4 | **Model S 85D** ⭐ | 2014–2016 | **85kWh** | **443** | `5YJSA7`, `5YJSB7` |
+| 5 | Model S P85 | 2013–2015 | 85kWh | 426 | `5YJSA5` |
+| 6 | Model S P85D | 2014–2016 | 85kWh | 436 | `5YJSA7` |
+| 7 | Model S 90 | 2015–2016 | 90kWh | 473 | `5YJSA8` |
+| 8 | Model S 90D | 2015–2017 | 90kWh | 473 | `5YJSA7` |
+| 9 | Model S P90D | 2015–2017 | 90kWh | 435 | `5YJSA7` |
+| 10 | Model S 100D | 2017–2020 | 100kWh | 539 | `5YJSA7` |
+| 11 | Model S P100D | 2017–2019 | 100kWh | 507 | `5YJSA7` |
+| 12 | Model S Long Range | 2019–2024 | 100kWh | 652 | `5YJSA7`, `LRW` |
+| 13 | Model S Plaid | 2021–2025 | 100kWh | 628 | `5YJSA7`, `LRW` |
+| 14 | Model S Plaid+ | 2022–2025 | 100kWh | 658 | `5YJSA7` |
+| 15 | Model S Standard Range | 2024– | 75kWh | 450 | `5YJSA7`, `LRW` |
 | | **Model X** |
 | 17 | Model X 75D | 2016–2018 | 75kWh | 381 | `5YJXCA4`, `5YJXC` |
 | 18 | Model X 90D | 2015–2016 | 90kWh | 414 | `5YJXCA4`, `5YJXC` |

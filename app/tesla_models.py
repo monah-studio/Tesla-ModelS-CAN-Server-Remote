@@ -6,7 +6,6 @@ Tesla Model Database — All models, years, colors, VIN decoder
 
 TESLA_MODELS = [
     # ── Model S ──
-    {"id": "ms_40",    "name": "Model S 40",       "years": "2013",        "vin_prefix": ["5YJSA1", "5YJSA2"], "battery": "40kWh", "range_km": 260},
     {"id": "ms_60",    "name": "Model S 60",       "years": "2013-2016",   "vin_prefix": ["5YJSA1", "5YJSA3"], "battery": "60kWh", "range_km": 335},
     {"id": "ms_60d",   "name": "Model S 60D",      "years": "2014-2016",   "vin_prefix": ["5YJSA7"],          "battery": "60kWh", "range_km": 351},  # dual motor
     {"id": "ms_85",    "name": "Model S 85",       "years": "2013-2015",   "vin_prefix": ["5YJSA4"],          "battery": "85kWh", "range_km": 426},
