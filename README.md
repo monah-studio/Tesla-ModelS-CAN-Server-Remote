@@ -41,6 +41,11 @@
 > **[ English ](#english)** · **[ 简体中文 ](#简体中文)** · **[ 日本語 ](#日本語)** · **[ 한국어 ](#한국어)**
 
 ---
+> **[ English ](#english)** · **[ 简体中文 ](#简体中文)** · **[ 日本語 ](#日本語)** · **[ 한국어 ](#한국어)**
+
+
+<a name="english"></a>
+## 🇺🇸 English
 
 ## 📋 Overview
 
@@ -207,7 +212,7 @@ No setup needed. Orange Pi broadcasts a BLE beacon (`TeslaControl-` prefix) cont
 
 ## 📱 App Platforms
 
-> **Web App** (PWA) — works instantly in any browser.  
+> **Web App** (PWA) — works instantly in any browser.
 > Native **iOS App** and **Android APK** coming — download and install directly.
 
 | Platform | Status | How to Access |
@@ -241,7 +246,7 @@ No setup needed. Orange Pi broadcasts a BLE beacon (`TeslaControl-` prefix) cont
 | `POST` | `/api/hvac_on` | ❄️ HVAC on | `0x302` | 🔜 Need verification |
 | `POST` | `/api/hvac_off` | ❄️ HVAC off | `0x302` | 🔜 Need verification |
 
-> ✅ = Code implemented and deployed. CANable hardware required to test on vehicle.  
+> ✅ = Code implemented and deployed. CANable hardware required to test on vehicle.
 > 🔜 = Code implemented, CAN IDs from community databases — vehicle testing pending.
 >
 > ¹ **Close charge port** only works on **2016+ Model S/X**. Pre-2016 vehicles (including the 2015 85D) use a mechanical latch that cannot be commanded via CAN. Use NFC trigged shortcut as workaround.
@@ -296,39 +301,12 @@ Tesla-CANServer-MyRemote/
 
 ## 📅 Timeline
 
-> ⏳ **Estimated completion: ~3 months remaining.**  
-> Prototype in active development. CANable 2.0 ordered for testing.  
+> ⏳ **Estimated completion: ~3 months remaining.**
+> Prototype in active development. CANable 2.0 ordered for testing.
 > Hardware BOM and detailed wiring guide coming once vehicle-verified.
 
 ---
 
-## 🙏 Credits / 致谢
-
-This project builds on the shoulders of these open-source communities:
-
-| Project | Role |
-|---------|------|
-| [**Open Vehicles**](https://docs.openvehicles.com) | Original open-source Tesla CAN project — massive inspiration |
-| [**CANable**](https://canable.io) | USB-to-CAN adapter hardware & firmware |
-| [**candleLight firmware**](https://github.com/candle-usb/candleLight_fw) | Open-source CAN firmware on CANable |
-| [**python-can**](https://github.com/hardbyte/python-can) | Python CAN library |
-| [**Flask**](https://flask.palletsprojects.com) | Web framework |
-| [**Tailscale**](https://tailscale.com) | Zero-config P2P VPN |
-| [**InfluxDB**](https://www.influxdata.com) | Time-series data store |
-| [**Grafana**](https://grafana.com) | Battery analytics dashboards |
-| [**Telegraf**](https://www.influxdata.com/time-series-platform/telegraf/) | Metrics collection |
-| [**Cloudflare Tunnel**](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) | HTTPS tunnel without VPN |
-| [**React**](https://react.dev) + [**Recharts**](https://recharts.org) | Dashboard UI |
-| [**Material Design 3**](https://m3.material.io) | Design system |
-| [**Orange Pi 4 Pro**](http://www.orangepi.org) | SBC — 6GB, 3 TOPS |
-| [**Armbian**](https://www.armbian.com) | Linux distribution |
-| [**OpenGarages**](https://opengarages.org) | Vehicle protocol reverse-engineering community |
-| [**Hermes Agent**](https://github.com/NousResearch/hermes-agent) | AI agent that built large parts of this project |
-| [**Namecheap**](https://namecheap.com) | DDNS for remote.openfrunk.com |
-
-**Special thanks** to the reverse-engineering community on [Tesla Motors Club](https://teslamotorsclub.com) and the CAN bus hacking forums.
-
-<p align="center"><sub>Built with ☕ and stubbornness in Hong Kong SAR</sub></p>
 ## 🗺️ Roadmap
 
 ### Phase 1 — Core Control (Current) 🚧
@@ -345,7 +323,7 @@ This project builds on the shoulders of these open-source communities:
 - CAN ID database is incomplete — many commands (windows, sunroof, HVAC) need sniffing
 - CANable 2.0 with candleLight gs_usb driver can drop frames under load
 - NFC card UID → CAN command mapping requires hardware handshake timing (< 100ms response to feel instant)
-- Orange Pi kernel (5.15.147-sun60iw2) doesn't ship socketcan by default; needs manual modprobe gs_usb
+- Orange Pi kernel (5.15.147-sun60iw2) doesn\'t ship socketcan by default; needs manual modprobe gs_usb
 
 | Item | Status |
 |------|:------:|
@@ -419,7 +397,7 @@ This project builds on the shoulders of these open-source communities:
 - Web Bluetooth / Web NFC APIs for zero-install web app access
 
 **Problems to solve:**
-- Apple HomeKey requires MFi certification and a HomeKit Accessory Protocol (HAP) chip — a USB PN532 cannot directly emulate a HomeKey credential without Apple's authentication chip (SE)
+- Apple HomeKey requires MFi certification and a HomeKit Accessory Protocol (HAP) chip — a USB PN532 cannot directly emulate a HomeKey credential without Apple\'s authentication chip (SE)
 - Workaround: emulate an NFC tag that triggers a Shortcut, which then calls the REST API via web request (confirmed feasible on iOS 17+)
 - Background NFC polling on iOS drains battery; user must intentionally tap the reader
 - Android HCE requires a companion app with foreground priority; background card emulation is unreliable on some OEM ROMs
@@ -458,11 +436,45 @@ This project builds on the shoulders of these open-source communities:
 | **v1.0 stable release** | **🎯 Target: ~3 months** |
 
 > 💡 **Want to help?** PRs, issues, and ideas are all welcome. Pick any 🔜 item and start a discussion.
+
 ---
 
-## Story / 故事 / 物語 / 이야기
+## 🗺️ Future: NFC Card Key Emulation
 
-**[ English ](#english) · [ 简体中文 ](#简体中文) · [ 日本語 ](#日本語) · [ 한국어 ](#한국어)**
+A dedicated sub-project to **emulate Tesla Model 3 / Model Y\'s phone key NFC behaviour** on older Model S.
+
+**The vision:** Tap an NFC card (or phone) on a reader mounted near the door handle → the Orange Pi reads the card UID → sends the corresponding CAN command to lock/unlock/start. Same tap-and-go experience as a 2024 Tesla, without upgrading the whole car.
+
+- Hardware: USB PN532 NFC module or ACR122U reader
+- Cards: MIFARE Classic / NTAG cards with stored vehicle access IDs
+- Backward support: NFC cards stored in `data/nfc_cards.json`, mapped to driver profiles
+- Multi-user: Each family member has their own card, car sets seat/mirror/steering automatically
+- Future: BLE phone-as-key via emulated NFC handover
+
+> Status: 🔜 Hardware needed — PN532 ordered, code framework ready in `app/nfc.py`
+
+---
+
+## 📁 Project Structure
+
+```
+Tesla-CANServer-MyRemote/
+├── app/
+│   ├── tesla_can.py          # CAN bus driver (socketcan interface)
+│   ├── tesla_models.py       # 39 Tesla models database + VIN decoder
+│   ├── server.py             # Flask REST API server
+│   └── static/index.html     # PWA mobile app (4-language UI)
+├── network/
+│   ├── setup_4g_modem.sh     # 4G/5G modem configuration
+│   ├── setup_network.sh      # Tailscale + DDNS + BLE
+│   └── ddns_update.sh        # DDNS periodic updater
+├── setup_orangepi.sh         # One-click deployment
+├── wiring.md                 # OBD-II wiring guide
+├── ARCHITECTURE.md           # Architecture diagram
+└── LICENSE                   # MIT
+```
+
+---
 
 ## 🇺🇸 The Story
 
@@ -591,6 +603,35 @@ Built with lots of ☕ and stubbornness in Hong Kong SAR.
 
 ---
 
+## 🙏 Credits / 致谢
+
+This project would not exist without these open-source projects and communities:
+
+| Project | What it does |
+|---------|-------------|
+| [**Open Vehicles**](https://docs.openvehicles.com) | OVMS — the original open-source Tesla CAN bus project. Massive inspiration. |
+| [**CANable**](https://canable.io) | USB-to-CAN adapter firmware & hardware — the physical bridge to the car |
+| [**candleLight firmware**](https://github.com/candle-usb/candleLight_fw) | Open-source CAN firmware running on CANable |
+| [**python-can**](https://github.com/hardbyte/python-can) | Python CAN library |
+| [**Flask**](https://flask.palletsprojects.com) | Web framework |
+| [**Tailscale**](https://tailscale.com) | Zero-config P2P VPN |
+| [**InfluxDB**](https://www.influxdata.com) | Time-series data store |
+| [**Grafana**](https://grafana.com) | Battery analytics dashboards |
+| [**Telegraf**](https://www.influxdata.com/time-series-platform/telegraf/) | Metrics collection |
+| [**Cloudflare Tunnel**](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) | HTTPS tunnel without VPN |
+| [**React**](https://react.dev) + [**Recharts**](https://recharts.org) | Dashboard UI |
+| [**Material Design 3**](https://m3.material.io) | Design system |
+| [**Orange Pi 4 Pro**](http://www.orangepi.org) | SBC — 6GB, 3 TOPS |
+| [**Armbian**](https://www.armbian.com) | Linux distribution |
+| [**OpenGarages**](https://opengarages.org) | Vehicle protocol RE community |
+| [**Hermes Agent**](https://github.com/NousResearch/hermes-agent) | AI agent that built parts of this project |
+| [**Namecheap**](https://namecheap.com) | DDNS for remote.openfrunk.com |
+
+Built with ☕ and stubbornness in Hong Kong SAR.
+
+
+---
+
 <a name="简体中文"></a>
 ## 🇨🇳 简体中文
 
@@ -689,6 +730,309 @@ MIT — 随便用。只是别因为你的车出了意外来起诉我。这是个
 
 ---
 
+---
+
+## 📋 总览
+
+<table>
+<tr>
+  <td width="33%" align="center">
+    <h3>⚡ 控制</h3>
+    锁定/解锁 · 前备箱/后备箱 ·<br>
+    灯光 · 鸣笛 · 车窗 ·<br>
+    HVAC · 充电口¹ · 后视镜 · NFC
+  </td>
+  <td width="33%" align="center">
+    <h3>📊 监测</h3>
+    电池电量 · 续航 ·<br>
+    诊断 (CAN/蓝牙/4G) ·<br>
+    VIN 解码 · 车型数据库
+  </td>
+  <td width="33%" align="center">
+    <h3>🔗 连接</h3>
+    Tailscale P2P · DDNS ·<br>
+    WiFi · BLE · NFC 卡片 ·<br>
+    4G 随时在线
+  </td>
+</tr>
+</table>
+
+<table>
+<tr>
+  <td width="50%" align="center">
+    <h3>📱 应用平台</h3>
+    🌐 <b>网页应用 (PWA)</b> — 已上线<br>
+    🍎 <b>iOS App</b> — 🔜 IPA 侧载<br>
+    🤖 <b>Android APK</b> — 🔜 下载安装
+  </td>
+  <td width="50%" align="center">
+    <h3>🛠️ 硬件</h3>
+    🍊 Orange Pi 4 Pro (6GB)<br>
+    🔌 CANable 2.0 USB-CAN<br>
+    📡 4G USB 上网卡 · 💳 NFC 读卡器
+  </td>
+</tr>
+</table>
+
+---
+
+## 🚀 快速开始
+
+### 1. 刷入 Orange Pi 系统到 SD 卡
+
+下载官方镜像，刷入 microSD 卡（16GB+）：
+
+| 下载 | 链接 |
+|------|------|
+| 🍊 Orange Pi OS 1.0.6 Jammy Server | [orangepi.org/download](http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-4-Pro.html) |
+| 🔧 Balena Etcher（刷写工具） | [balena.io/etcher](https://www.balena.io/etcher) |
+
+1. 将 microSD 插入电脑
+2. 打开 Balena Etcher → 选择 `.img.xz` 文件 → 选择 SD 卡 → **刷写！**
+3. 刷完后将 SD 卡插入 Orange Pi 并开机
+4. 查找 Pi 的 IP：查看路由器 DHCP 列表，或用 `arp -a` 扫描
+
+> 📦 **预刷机镜像** — 即将提供已预装所有服务的即刷即用镜像下载。
+
+### 2. 一键安装
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/monah-studio/\\
+Tesla-CANServer-MyRemote/main/setup.sh | sudo bash
+```
+
+或下载[最新版本](https://github.com/monah-studio/Tesla-CANServer-MyRemote/releases/latest)并运行：
+
+```bash
+sudo bash setup.sh
+```
+
+脚本会自动检测硬件、安装依赖、拉取最新代码并配置远程访问。
+
+### 3. 手动安装
+
+```bash
+git clone https://github.com/monah-studio/Tesla-CANServer-MyRemote.git
+cd Tesla-CANServer-MyRemote/app
+python3 -m venv venv && source venv/bin/activate
+pip install flask flask-cors python-can
+python server.py
+```
+
+在浏览器中打开 `http://[pi-ip]:5000`。
+
+---
+
+## 🌐 网络选项
+
+<table>
+<tr>
+  <th width="25%">方式</th>
+  <th width="25%">用户需求</th>
+  <th width="25%">兼容 VPN？</th>
+  <th width="25%">设置</th>
+</tr>
+<tr>
+  <td><b>☁️ Cloudflare Tunnel</b> 🥇</td>
+  <td>无需任何配置</td>
+  <td align="center">✅</td>
+  <td><code>setup.sh</code> → 选项 1</td>
+</tr>
+<tr>
+  <td><b>🔗 Tailscale</b></td>
+  <td>安装 Tailscale</td>
+  <td align="center">❌</td>
+  <td><code>setup.sh</code> → 选项 2</td>
+</tr>
+<tr>
+  <td><b>🏠 局域网 (WiFi)</b></td>
+  <td>同一网络</td>
+  <td align="center">✅</td>
+  <td>无需隧道</td>
+</tr>
+<tr>
+  <td><b>📶 蓝牙 (BLE)</b></td>
+  <td>无需配置</td>
+  <td align="center">✅</td>
+  <td>Pi 自动广播</td>
+</tr>
+</table>
+
+### ☁️ Cloudflare Tunnel（推荐）
+
+无需开放端口、无需公网 IP、无需 VPN。Pi 仅建立一个出站 HTTPS 连接。
+
+### 🔗 Tailscale
+
+手机↔Pi 通过 WireGuard 隧道直连。简单易用，但与其他 VPN 冲突。
+
+### 📶 蓝牙 (BLE)
+
+无需设置。Pi 广播包含 IP 的 BLE 信标，手机 Web Bluetooth 自动发现。
+
+---
+
+## 📱 应用平台
+
+| 平台 | 状态 | 访问方式 |
+|------|:----:|----------|
+| 🌐 **网页应用 (PWA)** | ✅ 已上线 | `http://[Pi-IP]:5000` 或 DDNS 域名 |
+| 🍎 **iOS App** | 🔜 计划中 | IPA 通过 AltStore 侧载 |
+| 🤖 **Android APK** | 🔜 计划中 | GitHub Releases 下载 |
+
+---
+
+## 🎮 API 参考
+
+### ⚡ 控制指令 (16 个)
+
+| 方法 | 端点 | 说明 | CAN ID | 状态 |
+|------|------|------|:------:|:----:|
+| `POST` | `/api/lock` | 🔒 锁定全车门 | `0x216` | ✅ |
+| `POST` | `/api/unlock` | 🔓 解锁全车门 | `0x216` | ✅ |
+| `POST` | `/api/frunk` | 🚘 开启前备箱 | `0x217` | ✅ |
+| `POST` | `/api/trunk` | 🚙 开启后备箱 | `0x218` | ✅ |
+| `POST` | `/api/honk` | 📯 鸣笛 | `0x245` | ✅ |
+| `POST` | `/api/flash_lights` | 💡 闪灯 | `0x244` | ✅ |
+| `POST` | `/api/windows_vent` | 🪟 车窗通风 | `0x215` | ✅ |
+| `POST` | `/api/windows_close` | 🪟 关闭车窗 | `0x215` | ✅ |
+| `POST` | `/api/charge_port_open` | 🔌 开启充电口 | `0x312` | 🔜 待验证 |
+| `POST` | `/api/charge_port_close` | 🔌 关闭充电口¹ | `0x312` | 🔜 待验证 |
+| `POST` | `/api/mirrors_fold` | 🪞 折叠后视镜 | `0x210` | 🔜 待验证 |
+| `POST` | `/api/mirrors_unfold` | 🪞 展开后视镜 | `0x210` | 🔜 待验证 |
+| `POST` | `/api/interior_lights_on` | 🔦 车内灯开启 | `0x240` | 🔜 待验证 |
+| `POST` | `/api/interior_lights_off` | 🔦 车内灯关闭 | `0x240` | 🔜 待验证 |
+| `POST` | `/api/hvac_on` | ❄️ 空调开启 | `0x302` | 🔜 待验证 |
+| `POST` | `/api/hvac_off` | ❄️ 空调关闭 | `0x302` | 🔜 待验证 |
+
+> ✅ = 代码已实现并部署。需 CANable 硬件进行实车测试。
+> 🔜 = 代码已实现，CAN ID 来自社区数据库 — 待实车验证。
+>
+> ¹ **关闭充电口**仅适用于 **2016+ Model S/X**。2016年之前的车型（包括2015 85D）使用机械锁扣，CAN总线无法控制关闭。
+
+### 📊 状态与数据
+
+| 方法 | 端点 | 说明 |
+|------|------|------|
+| `GET` | `/api/ping` | 健康检查 |
+| `GET` | `/api/status` | 完整车辆状态（电量、档位、速度、充电） |
+| `GET` | `/api/diagnostics` | 系统诊断（CAN/4G/蓝牙/Tailscale） |
+| `POST` | `/api/decode-vin` | 解码 VIN → 车型、年份、电池、续航 |
+| `GET` | `/api/models` | 全部 39 款 Tesla 车型数据库 |
+| `GET` | `/api/config/all` | 颜色、轮毂、MCU、内饰、车身样式 |
+
+---
+
+## 🧱 项目结构
+
+```
+Tesla-CANServer-MyRemote/
+├── app/
+│   ├── tesla_can.py          # CAN 总线驱动（socketcan 接口）
+│   ├── tesla_models.py       # 39 款 Tesla 车型数据库 + VIN 解码器
+│   ├── server.py             # Flask REST API 服务
+│   ├── nfc.py                # NFC 卡片读取守护进程
+│   └── static/index.html     # PWA 移动端控制面板
+├── network/
+│   ├── setup_4g_modem.sh     # 4G/5G 上网卡配置
+│   ├── setup_network.sh      # Tailscale + DDNS + BLE
+│   └── ddns_update.sh        # DDNS 定时更新
+├── setup.sh                  # 一键安装脚本
+├── wiring.md                 # OBD-II 接线指南
+└── assets/                   # 截图和图片
+---
+
+## 📅 时间线
+
+> ⏳ **预计完成：约 3 个月。** 原型开发中。CANable 2.0 已订购。
+> 硬件 BOM 和详细接线指南将在实车验证后发布。
+
+---
+
+## 🗺️ 路线图
+
+### 阶段 1 — 核心控制（当前阶段）🚧
+**愿景：** 用本地 CAN 总线控制器取代特斯拉官方服务器。手机上的每一步操作都在毫秒内转化为实打实的 CAN 总线指令。
+
+**技术：**
+- CANable 2.0（candleLight 固件 → gs_usb 原生 socketcan）
+- Python python-can 库，125 kbps 车身 CAN (BCAN)
+- Flask REST API 提供所有车辆控制端点
+- NFC 卡片读卡器（pyscard + ACR122U/PN532）
+- CAN ID 逆向工程（基于 2015 Model S 85D）
+
+**待解决问题：**
+- CAN ID 数据库不完整——许多指令（车窗、天窗、HVAC）需要嗅探
+- CANable 2.0 搭配 candleLight gs_usb 驱动在高负载下可能丢帧
+- NFC 卡片 UID → CAN 指令映射需硬件握手时序（< 100ms 响应才能保证即时感）
+- Orange Pi 内核 (5.15.147-sun60iw2) 默认不带 socketcan 驱动
+
+| 项目 | 状态 |
+|------|:----:|
+| CAN 总线通信（CANable 2.0） | 🔜 硬件已订购 |
+| 车身控制（锁、解锁、前备箱、后备箱） | ✅ 代码就绪 |
+| 灯光、鸣笛、车窗控制 | ✅ 代码就绪 |
+| HVAC、充电口、后视镜控制 | ✅ 代码就绪 |
+| NFC 卡片读取 — 模拟 Model 3/Y 钥匙 | 🔜 需硬件 |
+| 实时 CAN 数据流至 InfluxDB | 🔜 即将到来 |
+
+---
+
+### 阶段 2 — 分析与监控 📊
+**愿景：** 让车辆成为数据实验室。电池衰减曲线、驾驶效率分析、预防性故障预警——全部来自真实 CAN 数据。
+
+**技术：** Telegraf → InfluxDB 2.7, Grafana, DBC 解析, ML 异常检测
+
+**问题：** 无现成 DBC 文件、两路 CAN 需对齐、基数控制、查询性能
+
+---
+
+### 阶段 3 — 网络与接入 🔗
+**愿景：** 全球任何网络都能访问你的车——无需端口转发、静态 IP 或 VPN。
+
+**技术：** Cloudflare Tunnel, Tailscale, DDNS, BLE, 4G 故障切换
+
+**问题：** VPN 冲突、延迟权衡、蓝牙范围、4G 切换延迟
+
+---
+
+### 阶段 4 — 原生应用 📱
+**愿景：** Apple Wallet 拍一下解锁 2015 Model S。和 2024 Model 3 一样体验。
+
+**技术：** HomeKit/HomeKey, Android HCE, Capacitor.js
+
+**问题：** MFi 认证限制、Shortcut 变通方案、iOS 后台耗电
+
+---
+
+### 阶段 5 — 产品发布 🏁
+**愿景：** 30 分钟内完成安装。无需编程经验。
+
+**技术：** 预建镜像、一行命令安装、接线图、Docker Compose
+
+**问题：** 镜像大小、内核兼容性、法律声明、跨年 CAN ID
+
+---
+
+## 🗺️ 远期：NFC 卡片钥匙模拟
+
+在旧款 Model S 上模拟 **Tesla Model 3/Y 的 NFC 钥匙体验**。拍卡 → 读 UID → 发送 CAN 指令。PN532/ACR122U。多用户配置。未来支持 BLE 手机钥匙。
+
+> 状态：🔜 代码框架就绪 (app/nfc.py)
+
+---
+
+## 🙏 鸣谢
+
+感谢 Open Vehicles, CANable, python-can, Flask, Tailscale, InfluxDB, Grafana, Telegraf, Cloudflare Tunnel, React, Material Design 3, Orange Pi, Armbian, OpenGarages, Hermes Agent, Namecheap 等开源项目。特别感谢 Tesla Motors Club 和 CAN 总线逆向社区。
+
+MIT 许可。Built with ☕ in Hong Kong SAR.
+
+---
+
+
+---
+
 <a name="日本語"></a>
 ## 🇯🇵 日本語
 
@@ -711,6 +1055,68 @@ MIT — 随便用。只是别因为你的车出了意外来起诉我。这是个
 オープンソースコミュニティの共開発理念に基づき、コードと配線資料を公開しています。本プロジェクトは車両安全ファームウェアのクラッキングや違法改造を目的としたものではなく、公式の一方的なアカウント停止被害に遭ったオーナー同士で、安全な自前制御の代替案を情報共有するためのものです。
 
 法的コンプライアンスの境界線、基本的な数学的論理モデリング、そして修理工場のアドバイスに基づく車載ハードウェアとネットワークアーキテクチャを活かし、本システムは自身の合法車両のローカル制御に限定し、車両の動力・安全に関わるコアファームウェアには一切触れていません。最後に一言：自分が所有する車は、自分自身で制御する権利があるはずです。
+
+---
+
+---
+
+## 📋 概要
+
+<table>
+<tr>
+  <td width="33%" align="center">
+    <h3>⚡ 制御</h3>
+    ロック/アンロック · フランク/トランク ·<br>
+    ライト · ホーン · ウィンドウ ·<br>
+    HVAC · 充電ポート¹ · ミラー · NFC
+  </td>
+  <td width="33%" align="center">
+    <h3>📊 監視</h3>
+    バッテリー残量 · 航続距離 ·<br>
+    診断 (CAN/Bluetooth/4G) ·<br>
+    VIN デコード · 車種DB
+  </td>
+  <td width="33%" align="center">
+    <h3>🔗 接続</h3>
+    Tailscale P2P · DDNS ·<br>
+    WiFi · BLE · NFC カード ·<br>
+    4G 常時接続
+  </td>
+</tr>
+</table>
+
+### 🚀 クイックスタート
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/monah-studio/\\
+Tesla-CANServer-MyRemote/main/setup.sh | sudo bash
+```
+
+### 🌐 ネットワーク
+
+- ☁️ Cloudflare Tunnel（推奨）— ポート不要、VPN不要
+- 🔗 Tailscale P2P — シンプル、VPNと競合
+- 🏠 LAN (WiFi) — 同一ネットワーク
+- 📶 BLE — 設定不要
+
+### 🎮 API
+
+16 制御エンドポイント + ステータスエンドポイント
+
+### 🗺️ ロードマップ
+
+5 フェーズ：コア制御 → 分析 → ネットワーク → アプリ → リリース
+
+### 🗺️ NFC カードキー
+
+Model 3/Y の NFC 体験を旧 Model S で再現
+
+### 🙏 クレジット
+
+Open Vehicles, CANable, python-can, Flask, Tailscale, InfluxDB, Grafana, Namecheap に感謝。
+
+---
+
 
 ---
 
@@ -739,42 +1145,65 @@ MIT — 随便用。只是别因为你的车出了意外来起诉我。这是个
 
 ---
 
-## 🗺️ Future: NFC Card Key Emulation
+---
 
-A dedicated sub-project to **emulate Tesla Model 3 / Model Y's phone key NFC behaviour** on older Model S.
+## 📋 개요
 
-**The vision:** Tap an NFC card (or phone) on a reader mounted near the door handle → the Orange Pi reads the card UID → sends the corresponding CAN command to lock/unlock/start. Same tap-and-go experience as a 2024 Tesla, without upgrading the whole car.
+<table>
+<tr>
+  <td width="33%" align="center">
+    <h3>⚡ 제어</h3>
+    잠금/해제 · 프렁크/트렁크 ·<br>
+    라이트 · 경적 · 윈도우 ·<br>
+    HVAC · 충전 포트¹ · 미러 · NFC
+  </td>
+  <td width="33%" align="center">
+    <h3>📊 모니터링</h3>
+    배터리 잔량 · 주행거리 ·<br>
+    진단 (CAN/블루투스/4G) ·<br>
+    VIN 디코더 · Tesla 모델 DB
+  </td>
+  <td width="33%" align="center">
+    <h3>🔗 연결</h3>
+    Tailscale P2P · DDNS ·<br>
+    WiFi · BLE · NFC 카드 ·<br>
+    4G 상시 접속
+  </td>
+</tr>
+</table>
 
-- Hardware: USB PN532 NFC module or ACR122U reader
-- Cards: MIFARE Classic / NTAG cards with stored vehicle access IDs
-- Backward support: NFC cards stored in `data/nfc_cards.json`, mapped to driver profiles
-- Multi-user: Each family member has their own card, car sets seat/mirror/steering automatically
-- Future: BLE phone-as-key via emulated NFC handover
+### 🚀 빠른 시작
 
-> Status: 🔜 Hardware needed — PN532 ordered, code framework ready in `app/nfc.py`
+```bash
+curl -fsSL https://raw.githubusercontent.com/monah-studio/\\
+Tesla-CANServer-MyRemote/main/setup.sh | sudo bash
+```
+
+### 🌐 네트워크 옵션
+
+- ☁️ Cloudflare Tunnel（권장）
+- 🔗 Tailscale P2P
+- 🏠 LAN (WiFi)
+- 📶 BLE
+
+### 🎮 API
+
+16개 제어 엔드포인트 + 상태 엔드포인트
+
+### 🗺️ 로드맵
+
+5단계: 코어 제어 → 분석 → 네트워크 → 앱 → 출시
+
+### 🗺️ NFC 카드 키 에뮬레이션
+
+Model 3/Y의 NFC 경험을 구형 Model S에서 재현
+
+### 🙏 크레딧
+
+Open Vehicles, CANable, python-can, Flask, Tailscale, InfluxDB, Grafana, Namecheap 감사합니다.
 
 ---
 
-## 📁 Project Structure
-
-```
-Tesla-CANServer-MyRemote/
-├── app/
-│   ├── tesla_can.py          # CAN bus driver (socketcan interface)
-│   ├── tesla_models.py       # 39 Tesla models database + VIN decoder
-│   ├── server.py             # Flask REST API server
-│   └── static/index.html     # PWA mobile app (4-language UI)
-├── network/
-│   ├── setup_4g_modem.sh     # 4G/5G modem configuration
-│   ├── setup_network.sh      # Tailscale + DDNS + BLE
-│   └── ddns_update.sh        # DDNS periodic updater
-├── setup_orangepi.sh         # One-click deployment
-├── wiring.md                 # OBD-II wiring guide
-├── ARCHITECTURE.md           # Architecture diagram
-└── LICENSE                   # MIT
-```
-
----
 
 This repo is a conversation starter, not a product pitch. PRs welcome. Issues welcome. Ideas welcome. Let's build together.
 
