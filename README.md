@@ -361,6 +361,7 @@ This project builds on the shoulders of these open-source communities:
 | PWA (current) | ✅ Live |
 | iOS IPA sideload | 🔜 Planned |
 | Android APK | 🔜 Planned |
+| **Apple HomeKey (HomeKit) emulation as CarKey** | 🔜 Needs NFC + HomeKit-certified PN532 reader |
 
 ### Phase 5 — Production Release 🏁
 | Item | Status |
