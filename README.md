@@ -88,9 +88,22 @@ Simple, but users must install Tailscale and it conflicts with other VPNs.
 
 ---
 
+## 📱 App Platforms
+
+> Currently a **Web App** (PWA) — works in any browser.  
+> Native **iOS App** and **Android APK** coming soon — download and install directly.
+
+| Platform | Status | How to Access |
+|----------|--------|--------------|
+| 🌐 **Web App (PWA)** | ✅ Live now | `http://[Pi-IP]:5000` or `https://your-ddns-domain:5000` |
+| 🍎 **iOS App** | 🔜 Planned | Self-hosted IPA, sideload via AltStore / SideStore |
+| 🤖 **Android APK** | 🔜 Planned | Download `.apk` from GitHub Releases → install directly |
+
+---
+
 ## 🎮 API Reference
 
-### Controls (16 commands)
+### ⚡ Control Commands (16)
 
 | Method | Endpoint | Description | CAN ID |
 |--------|----------|-------------|:------:|
