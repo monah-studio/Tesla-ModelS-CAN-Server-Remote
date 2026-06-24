@@ -262,6 +262,59 @@ No setup needed. Orange Pi broadcasts a BLE beacon (`TeslaControl-` prefix) cont
 | `GET` | `/api/models` | All 39 Tesla models in database |
 | `GET` | `/api/config/all` | Colors, wheels, MCU, interior, body styles |
 
+### 🚗 Supported Models (39)
+
+| # | Model | Years | Battery | Range (km) | VIN Prefix |
+|---|-------|:-----:|:-------:|:----------:|:----------:|
+| | **Roadster** |
+| 1 | Roadster 1.0 | 2008–2012 | 53kWh | 393 | `5YJRE1` |
+| | **Model S** |
+| 2 | Model S 40 | 2013 | 40kWh | 260 | `5YJSA1`, `5YJSA2` |
+| 3 | Model S 60 | 2013–2016 | 60kWh | 335 | `5YJSA1`, `5YJSA3` |
+| 4 | Model S 60D | 2014–2016 | 60kWh | 351 | `5YJSA7` |
+| 5 | Model S 85 | 2013–2015 | 85kWh | 426 | `5YJSA4` |
+| 6 | **Model S 85D** ⭐ | 2014–2016 | **85kWh** | **443** | `5YJSA7`, `5YJSB7` |
+| 7 | Model S P85 | 2013–2015 | 85kWh | 426 | `5YJSA5` |
+| 8 | Model S P85D | 2014–2016 | 85kWh | 436 | `5YJSA7` |
+| 9 | Model S 90 | 2015–2016 | 90kWh | 473 | `5YJSA8` |
+| 10 | Model S 90D | 2015–2017 | 90kWh | 473 | `5YJSA7` |
+| 11 | Model S P90D | 2015–2017 | 90kWh | 435 | `5YJSA7` |
+| 12 | Model S 100D | 2017–2020 | 100kWh | 539 | `5YJSA7` |
+| 13 | Model S P100D | 2017–2019 | 100kWh | 507 | `5YJSA7` |
+| 14 | Model S Long Range | 2019–2024 | 100kWh | 652 | `5YJSA7`, `LRW` |
+| 15 | Model S Plaid | 2021–2025 | 100kWh | 628 | `5YJSA7`, `LRW` |
+| 16 | Model S Plaid+ | 2022–2025 | 100kWh | 658 | `5YJSA7` |
+| 17 | Model S Standard Range | 2024– | 75kWh | 450 | `5YJSA7`, `LRW` |
+| | **Model X** |
+| 18 | Model X 75D | 2016–2018 | 75kWh | 381 | `5YJXCA4`, `5YJXC` |
+| 19 | Model X 90D | 2015–2016 | 90kWh | 414 | `5YJXCA4`, `5YJXC` |
+| 20 | Model X P90D | 2015–2016 | 90kWh | 402 | `5YJXCA4`, `5YJXC` |
+| 21 | Model X 100D | 2017–2020 | 100kWh | 565 | `5YJXCA4`, `5YJXC` |
+| 22 | Model X P100D | 2016–2019 | 100kWh | 542 | `5YJXCA4`, `5YJXC` |
+| 23 | Model X Long Range | 2019–2024 | 100kWh | 580 | `5YJXCA4`, `LRW` |
+| 24 | Model X Plaid | 2021–2025 | 100kWh | 536 | `5YJXCA4`, `LRW` |
+| 25 | Model X Standard Range | 2024– | 75kWh | 400 | `5YJXCA4`, `LRW` |
+| | **Model 3** |
+| 26 | Model 3 Standard Range | 2017–2021 | 50kWh | 354 | `5YJ3LA`, `LRW3` |
+| 27 | Model 3 SR+ | 2019–2023 | 54kWh | 423 | `5YJ3LA`, `LRW3` |
+| 28 | Model 3 SR+ (China) | 2021–2023 | 55kWh | 448 | `LRW3` |
+| 29 | Model 3 Mid Range | 2018–2019 | 62kWh | 418 | `5YJ3LA` |
+| 30 | Model 3 Long Range RWD | 2017–2019 | 75kWh | 499 | `5YJ3LA` |
+| 31 | Model 3 Long Range AWD | 2018–2024 | 75–82kWh | 568 | `5YJ3LE`, `LRW3` |
+| 32 | Model 3 Performance | 2018–2024 | 75–82kWh | 507 | `5YJ3LE`, `LRW3` |
+| | **Model Y** |
+| 33 | Model Y RWD | 2021–2024 | 60–75kWh | 455 | `5YJY`, `LRWY` |
+| 34 | Model Y Long Range AWD | 2020–2025 | 75–82kWh | 533 | `5YJY`, `LRWY` |
+| 35 | Model Y Performance | 2020–2025 | 75–82kWh | 488 | `5YJY`, `LRWY` |
+| | **Cybertruck** |
+| 36 | Cybertruck Cyberbeast | 2024– | 123kWh | 515 | `7G2` |
+| 37 | Cybertruck AWD | 2024– | 123kWh | 547 | `7G2` |
+| 38 | Cybertruck RWD | 2025– | 123kWh | 400 | `7G2` |
+| | **Semi** |
+| 39 | Tesla Semi | 2022– | 900kWh | 800 | `7G2` |
+
+> ⭐ **Your car**: Model S 85D (2015) — currently used as primary test vehicle and CAN ID development target.
+
 ### `GET /api/status` Example
 
 ```json
