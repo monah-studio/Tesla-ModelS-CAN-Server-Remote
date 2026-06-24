@@ -716,29 +716,33 @@ bash network/setup_network.sh
 
 ## 🙏 Credits / 致谢
 
-This project would not exist without these open-source projects and communities:
+This project builds on the shoulders of these open-source projects and communities:
 
-| Project | What it does |
-|---------|-------------|
-| [**Open Vehicles**](https://docs.openvehicles.com) | OVMS — the original open-source Tesla CAN bus project. Massive inspiration. |
-| [**CANable**](https://canable.io) | USB-to-CAN adapter firmware & hardware — the physical bridge to the car |
+| Project | Role |
+|---------|------|
+| [**Open Vehicles / OVMS**](https://docs.openvehicles.com) | Original open-source Tesla CAN bus project — the inspiration |
+| [**CANable**](https://canable.io) | USB-to-CAN adapter hardware & candleLight firmware |
 | [**candleLight firmware**](https://github.com/candle-usb/candleLight_fw) | Open-source CAN firmware running on CANable |
-| [**python-can**](https://github.com/hardbyte/python-can) | Python CAN library |
-| [**Flask**](https://flask.palletsprojects.com) | Web framework for the REST API server |
-| [**Tailscale**](https://tailscale.com) | Zero-config VPN — secure remote access to the car |
-| [**InfluxDB**](https://www.influxdata.com) | Time-series database for battery health and driving data |
-| [**Grafana**](https://grafana.com) | Battery health visualization and analytics dashboards |
-| [**Telegraf**](https://www.influxdata.com/time-series-platform/telegraf/) | Metrics collection agent for CAN bus data |
-| [**Cloudflare Tunnel**](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) | Secure HTTPS tunnel without VPN — phone access anywhere |
-| [**React**](https://react.dev) + [**Recharts**](https://recharts.org) | Battery analytics dashboard UI |
-| [**Material Design 3**](https://m3.material.io) | Design system for the mobile control panel |
-| [**Orange Pi 4 Pro**](http://www.orangepi.org) | The SBC running the server — 6GB, 3 TOPS edge AI |
-| [**Armbian / Orange Pi OS**](https://www.armbian.com) | Linux distribution powering the Orange Pi |
-| [**Tesla Vehicle Command SDK**](https://github.com/teslamotors/vehicle-command) | Tesla's official BLE/cloud API (reference only — not used directly) |
-| [**Comma.ai OpenPilot**](https://github.com/commaai/openpilot) | ADAS system — pushing boundaries of what's possible with cars |
-| [**OpenGarages**](https://opengarages.org) | Community of hackers reverse-engineering vehicle protocols |
-| [**Hermes Agent**](https://github.com/NousResearch/hermes-agent) | AI agent that built and debugged large parts of this project |
+| [**python-can**](https://github.com/hardbyte/python-can) | Python CAN library — software bridge to the bus |
+| [**Flask**](https://flask.palletsprojects.com) | Web framework powering the REST API |
+| [**Tailscale**](https://tailscale.com) | Zero-config P2P VPN — secure remote access |
+| [**Cloudflare Tunnel**](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) | HTTPS tunnel — access without port forwarding |
+| [**InfluxDB**](https://www.influxdata.com) | Time-series database for battery data |
+| [**Grafana**](https://grafana.com) | Battery analytics dashboards |
+| [**Telegraf**](https://www.influxdata.com/time-series-platform/telegraf/) | Metrics collection for CAN bus data |
+| [**React**](https://react.dev) + [**Recharts**](https://recharts.org) | Dashboard UI components |
+| [**Material Design 3**](https://m3.material.io) | Design system for the control panel |
+| [**Orange Pi 4 Pro**](http://www.orangepi.org) | SBC — 6GB RAM, 3 TOPS edge AI |
+| [**Armbian**](https://www.armbian.com) | Linux distribution for Orange Pi |
+| [**BalenaEtcher**](https://www.balena.io/etcher) | SD card flashing tool |
+| [**Comma.ai OpenPilot**](https://github.com/commaai/openpilot) | ADAS — pushing vehicle RE boundaries |
+| [**Tesla Motors Club**](https://teslamotorsclub.com) | CAN bus reverse-engineering community knowledge |
+| [**OpenGarages**](https://opengarages.org) | Vehicle protocol RE community |
+| [**Hermes Agent**](https://github.com/NousResearch/hermes-agent) | AI agent that built large parts of this project |
 | [**Namecheap**](https://namecheap.com) + [**DuckDNS**](https://duckdns.org) | DDNS services for remote.openfrunk.com |
+| [**AltStore**](https://altstore.io) | iOS IPA sideload tool referenced for distribution |
+
+Built with ☕ and stubbornness in Hong Kong SAR.
 
 **Special thanks** to the reverse-engineering community on [Tesla Motors Club](https://teslamotorsclub.com) and the CAN bus hacking forums — the collective knowledge that made this possible.
 
@@ -748,27 +752,31 @@ Built with lots of ☕ and stubbornness in Hong Kong SAR.
 
 ## 🙏 Credits / 致谢
 
-This project would not exist without these open-source projects and communities:
+This project builds on the shoulders of these open-source projects and communities:
 
-| Project | What it does |
-|---------|-------------|
-| [**Open Vehicles**](https://docs.openvehicles.com) | OVMS — the original open-source Tesla CAN bus project. Massive inspiration. |
-| [**CANable**](https://canable.io) | USB-to-CAN adapter firmware & hardware — the physical bridge to the car |
+| Project | Role |
+|---------|------|
+| [**Open Vehicles / OVMS**](https://docs.openvehicles.com) | Original open-source Tesla CAN bus project — the inspiration |
+| [**CANable**](https://canable.io) | USB-to-CAN adapter hardware & candleLight firmware |
 | [**candleLight firmware**](https://github.com/candle-usb/candleLight_fw) | Open-source CAN firmware running on CANable |
-| [**python-can**](https://github.com/hardbyte/python-can) | Python CAN library |
-| [**Flask**](https://flask.palletsprojects.com) | Web framework |
-| [**Tailscale**](https://tailscale.com) | Zero-config P2P VPN |
-| [**InfluxDB**](https://www.influxdata.com) | Time-series data store |
+| [**python-can**](https://github.com/hardbyte/python-can) | Python CAN library — software bridge to the bus |
+| [**Flask**](https://flask.palletsprojects.com) | Web framework powering the REST API |
+| [**Tailscale**](https://tailscale.com) | Zero-config P2P VPN — secure remote access |
+| [**Cloudflare Tunnel**](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) | HTTPS tunnel — access without port forwarding |
+| [**InfluxDB**](https://www.influxdata.com) | Time-series database for battery data |
 | [**Grafana**](https://grafana.com) | Battery analytics dashboards |
-| [**Telegraf**](https://www.influxdata.com/time-series-platform/telegraf/) | Metrics collection |
-| [**Cloudflare Tunnel**](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) | HTTPS tunnel without VPN |
-| [**React**](https://react.dev) + [**Recharts**](https://recharts.org) | Dashboard UI |
-| [**Material Design 3**](https://m3.material.io) | Design system |
-| [**Orange Pi 4 Pro**](http://www.orangepi.org) | SBC — 6GB, 3 TOPS |
-| [**Armbian**](https://www.armbian.com) | Linux distribution |
+| [**Telegraf**](https://www.influxdata.com/time-series-platform/telegraf/) | Metrics collection for CAN bus data |
+| [**React**](https://react.dev) + [**Recharts**](https://recharts.org) | Dashboard UI components |
+| [**Material Design 3**](https://m3.material.io) | Design system for the control panel |
+| [**Orange Pi 4 Pro**](http://www.orangepi.org) | SBC — 6GB RAM, 3 TOPS edge AI |
+| [**Armbian**](https://www.armbian.com) | Linux distribution for Orange Pi |
+| [**BalenaEtcher**](https://www.balena.io/etcher) | SD card flashing tool |
+| [**Comma.ai OpenPilot**](https://github.com/commaai/openpilot) | ADAS — pushing vehicle RE boundaries |
+| [**Tesla Motors Club**](https://teslamotorsclub.com) | CAN bus reverse-engineering community knowledge |
 | [**OpenGarages**](https://opengarages.org) | Vehicle protocol RE community |
-| [**Hermes Agent**](https://github.com/NousResearch/hermes-agent) | AI agent that built parts of this project |
-| [**Namecheap**](https://namecheap.com) | DDNS for remote.openfrunk.com |
+| [**Hermes Agent**](https://github.com/NousResearch/hermes-agent) | AI agent that built large parts of this project |
+| [**Namecheap**](https://namecheap.com) + [**DuckDNS**](https://duckdns.org) | DDNS services for remote.openfrunk.com |
+| [**AltStore**](https://altstore.io) | iOS IPA sideload tool referenced for distribution |
 
 Built with ☕ and stubbornness in Hong Kong SAR.
 
