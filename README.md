@@ -336,7 +336,7 @@ This project builds on the shoulders of these open-source communities:
 | Vehicle body control (lock, unlock, frunk, trunk) | ✅ Code ready, needs hardware |
 | Lights, horn, windows control | ✅ Code ready, needs hardware |
 | HVAC, charge port, mirrors control | ✅ Code ready, needs vehicle verification |
-| NFC card reader integration | ✅ Code ready, needs reader hardware |
+| NFC card reader — simulate Model 3/Y phone key | 🔜 Needs USB PN532/ACR122U hardware |
 | Real-time CAN data streaming to InfluxDB | 🔜 Coming |
 
 ### Phase 2 — Analytics & Monitoring 📊
