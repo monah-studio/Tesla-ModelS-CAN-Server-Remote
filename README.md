@@ -330,6 +330,21 @@ This project builds on the shoulders of these open-source communities:
 ## 🗺️ Roadmap
 
 ### Phase 1 — Core Control (Current) 🚧
+**Vision:** Replace Tesla's official server with your own local CAN bus controller. Every button your phone sends becomes a wire-level CAN command within milliseconds.
+
+**Tech:**
+- CANable 2.0 (candleLight firmware → gs_usb native socketcan)
+- Python `python-can` library with 125 kbps Body CAN (BCAN)
+- Flask REST API for all vehicle endpoints
+- NFC card reader via pyscard + ACR122U/PN532
+- CAN ID reverse-engineering from 2015 Model S 85D
+
+**Problems to solve:**
+- CAN ID database is incomplete — many commands (windows, sunroof, HVAC) need sniffing
+- CANable 2.0 with candleLight gs_usb driver can drop frames under load
+- NFC card UID → CAN command mapping requires hardware handshake timing (< 100ms response to feel instant)
+- Orange Pi kernel (5.15.147-sun60iw2) doesn't ship socketcan by default; needs manual modprobe gs_usb
+
 | Item | Status |
 |------|:------:|
 | CAN bus communication (CANable 2.0) | 🔜 Hardware ordered |
@@ -339,7 +354,23 @@ This project builds on the shoulders of these open-source communities:
 | NFC card reader — simulate Model 3/Y phone key | 🔜 Needs USB PN532/ACR122U hardware |
 | Real-time CAN data streaming to InfluxDB | 🔜 Coming |
 
+---
+
 ### Phase 2 — Analytics & Monitoring 📊
+**Vision:** Turn 2015 Model S into a data-generating lab. Historical battery degradation curves, driving efficiency breakdowns, pre-emptive fault warnings — all drawn from real CAN data.
+
+**Tech:**
+- Telegraf → InfluxDB 2.7 (time-series pipeline already installed on Orange Pi)
+- Grafana dashboards with React + Recharts overlay
+- CAN DBC file parsing for battery cell voltages, temperatures, BMS states
+- ML anomaly detection on recurring CAN errors (e.g. thermal runaway precursors)
+
+**Problems to solve:**
+- No CAN DBC exists for 2015 Model S — every signal must be reverse-engineered from raw frames
+- Battery data is fragmented across BCAN + CHCAN; need to aggregate and timestamp-align two buses
+- InfluxDB schema needs careful design to avoid cardinality explosion (each cell voltage is a unique series)
+- Grafana panel query performance on 5M+ data points with sub-second refresh
+
 | Item | Status |
 |------|:------:|
 | Battery SoC & health dashboard (React) | ✅ Built |
@@ -347,7 +378,25 @@ This project builds on the shoulders of these open-source communities:
 | Driving efficiency analysis | 🔜 Need real data |
 | Battery degradation tracking | 🔜 Post-launch |
 
+---
+
 ### Phase 3 — Network & Access 🔗
+**Vision:** Your car reachable from anywhere in the world — no port forwarding, no static IP, no VPN conflict. Four fallback methods so it never goes offline.
+
+**Tech:**
+- Cloudflare Tunnel (cloudflared) for zero-trust HTTPS ingress
+- Tailscale P2P WireGuard for direct low-latency control
+- DDNS via Namecheap for direct IP fallback (remote.openfrunk.com)
+- BLE beacon advertisement (Eddystone-URL) for zero-config garage discovery
+- 4G USB modem failover with ModemManager + NetworkManager
+
+**Problems to solve:**
+- Tailscale conflicts with corporate VPNs — user must toggle off to reach the car
+- Cloudflare Tunnel adds ~100-200ms latency vs direct DDNS connection
+- BLE beacon range on Orange Pi 4 Pro is only ~5-8m (metal car body attenuates signal)
+- 4G modem auto-switch latency — cellular fallback takes 8-15 seconds during WiFi outage
+- CF tunnel DNS routing: tesla.openfrunk.com CNAME → tunnel.app must be created in Cloudflare dashboard
+
 | Item | Status |
 |------|:------:|
 | 4 connection modes (Tailscale / DDNS / WiFi / BLE) | ✅ All implemented |
@@ -355,7 +404,25 @@ This project builds on the shoulders of these open-source communities:
 | Pre-flashed SD card image | 🔜 Near production |
 | BLE beacon auto-discovery | 🔜 Coming |
 
+---
+
 ### Phase 4 — Native Apps 📱
+**Vision:** Apple Wallet tap-to-unlock on a 2015 Model S. Open your phone, tap the reader, car unlocks. Same UX as a 2024 Model 3 — on a 10-year-old car.
+
+**Tech:**
+- Apple HomeKit / HomeKey (NFC Type 2/4 tag emulation via HomeKit Accessory Protocol)
+- iOS App Clip or PWA with background NFC polling
+- Android HCE (Host Card Emulation) for Google Wallet / direct tap
+- Capacitor.js or Swift/SwiftUI native wrappers for iOS connectivity
+- Web Bluetooth / Web NFC APIs for zero-install web app access
+
+**Problems to solve:**
+- Apple HomeKey requires MFi certification and a HomeKit Accessory Protocol (HAP) chip — a USB PN532 cannot directly emulate a HomeKey credential without Apple's authentication chip (SE)
+- Workaround: emulate an NFC tag that triggers a Shortcut, which then calls the REST API via web request (confirmed feasible on iOS 17+)
+- Background NFC polling on iOS drains battery; user must intentionally tap the reader
+- Android HCE requires a companion app with foreground priority; background card emulation is unreliable on some OEM ROMs
+- PWA push notifications for urgent alerts (charge interrupted, alarm triggered) are not supported on iOS Safari
+
 | Item | Status |
 |------|:------:|
 | PWA (current) | ✅ Live |
@@ -363,7 +430,24 @@ This project builds on the shoulders of these open-source communities:
 | Android APK | 🔜 Planned |
 | **Apple HomeKey (HomeKit) emulation as CarKey** | 🔜 Needs NFC + HomeKit-certified PN532 reader |
 
+---
+
 ### Phase 5 — Production Release 🏁
+**Vision:** A complete, documented, one-script-deployment system that anyone with a 2012-2020 Tesla and a CAN adapter can install in under 30 minutes. No coding, no terminal expertise, no Cloudflare account needed.
+
+**Tech:**
+- Pre-built Orange Pi Armbian image (.img.xz) with all services pre-installed
+- One-line curl | bash installer (already scaffolded in setup.sh)
+- HTML wiring guide with photos + pinout diagrams
+- Docker Compose alternative for advanced users (Grafana + InfluxDB + Cloudflared in containers)
+
+**Problems to solve:**
+- Pre-built SD card image is ~4-6GB compressed — hosting bandwidth costs and download time
+- Armbian kernel compatibility: must test build on 20+ Orange Pi OS / Armbian versions
+- Legal disclaimer: car modifications void insurance; need lawyer-reviewed safety notice
+- CAN command test matrix: not every Tesla model year uses the same CAN IDs — need per-model-year calibration
+- User onboarding: most Tesla DIY owners are not Linux users; the setup.sh must handle errors gracefully and provide clear debug output
+
 | Item | Status |
 |------|:------:|
 | Hardware BOM & wiring guide | ⏳ In progress |
@@ -372,10 +456,6 @@ This project builds on the shoulders of these open-source communities:
 | **v1.0 stable release** | **🎯 Target: ~3 months** |
 
 > 💡 **Want to help?** PRs, issues, and ideas are all welcome. Pick any 🔜 item and start a discussion.
-
----
-
-
 ---
 
 ## Story / 故事 / 物語 / 이야기
