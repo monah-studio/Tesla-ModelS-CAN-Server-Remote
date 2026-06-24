@@ -1,6 +1,6 @@
-# 🚗 Tesla CANRemote by OpenFrunk
+# 🚗 Tesla CANServer MyRemote
 
-> **Self-hosted CAN bus controller for Tesla Model S (pre-2021)**  
+> **Self-hosted CAN bus server for Tesla Model S (pre-2021)**  
 > Orange Pi 4 Pro + CANable 2.0 USB-CAN + Flask REST API + Tailscale P2P
 
 <p align="center">
